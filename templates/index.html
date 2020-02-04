@@ -1,0 +1,748 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{#{% block title %}机构列表页{% endblock %}#}
+{#{% block content %}#}
+{##}
+{##}
+{##}
+{##}
+{#    <div class="banner">#}
+{#        <div class="wp">#}
+{#            <div class="fl">#}
+{#                <div class="imgslide">#}
+{#                    <ul class="imgs">#}
+{#                        {% for banner in banners %}#}
+{##}
+{#                            <li>#}
+{#                                <a href="{{ banner.url }}">#}
+{#                                    <img width="1200" height="478"#}
+{#                                         src="{{ banner.image.url }}"/>#}
+{#                                </a>#}
+{#                            </li>#}
+{#                        {% endfor %}#}
+{##}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="unslider-arrow prev"></div>#}
+{#                <div class="unslider-arrow next"></div>#}
+{#            </div>#}
+{##}
+{#        </div>#}
+{##}
+{##}
+{#    </div>#}
+{#    <!--banner end-->#}
+{#    <!--feature start-->#}
+{#    <section>#}
+{#        <div class="wp">#}
+{#            <ul class="feature">#}
+{#                <li class="feature1">#}
+{#                    <img class="pic" src="/static/images/feature1.png"/>#}
+{#                    <p class="center">专业权威</p>#}
+{#                </li>#}
+{#                <li class="feature2">#}
+{#                    <img class="pic" src="/static/images/feature2.png"/>#}
+{#                    <p class="center">课程最新</p>#}
+{#                </li>#}
+{#                <li class="feature3">#}
+{#                    <img class="pic" src="/static/images/feature3.png"/>#}
+{#                    <p class="center">名师授课</p>#}
+{#                </li>#}
+{#                <li class="feature4">#}
+{#                    <img class="pic" src="/static/images/feature4.png"/>#}
+{#                    <p class="center">数据真实</p>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </div>#}
+{#    </section>#}
+{#    <!--feature end-->#}
+{#    <!--module1 start-->#}
+{#    <section>#}
+{#        <div class="module">#}
+{#            <div class="wp">#}
+{#                <h1>公开课程</h1>#}
+{#                <div class="module1 eachmod">#}
+{#                                        <div class="module1_1 left">#}
+{#                                            <img width="228" height="614" src="{% static 'images/module1_1.jpg' %}"/>#}
+{#                                            <p class="fisrt_word">名师授课<br/>专业权威</p>#}
+{#                                            <a class="more" href="{% url 'course:list' %}">查看更多课程 ></a>#}
+{#                                        </div>#}
+{#                    <div class="right group_list">#}
+{#                                                <div class="module1_2 box">#}
+{#                                                    <div class="imgslide2">#}
+{#                                                        <ul class="imgs">#}
+{#                                                            {% for banner_course in banner_courses %}#}
+{#                                                                <li>#}
+{#                                                                    <a href="{% url 'course:detail' banner_course.id %}">#}
+{#                                                                        <img width="470" height="300"#}
+{#                                                                             src="{{ banner_course.image.url }}"/>#}
+{#                                                                    </a>#}
+{#                                                                </li>#}
+{#                                                            {% endfor %}#}
+{#                                                        </ul>#}
+{#                                                    </div>#}
+{#                                                    <div class="unslider-arrow2 prev"></div>#}
+{#                                                    <div class="unslider-arrow2 next"></div>#}
+{#                                                </div>#}
+{#                        {% for course in courses %}#}
+{##}
+{#                            <div class="module1_{{ forloop.counter|add:2 }} box">#}
+{#                                <a href="{% url 'course:detail' course.id %}">#}
+{#                                    <img width="233" height="190" src="{{ course.image.url }}"/>#}
+{#                                </a>#}
+{#                                <div class="des">#}
+{#                                    <a href="course-detail.html">#}
+{#                                        <h2 title="django入门">{{ course.name }}</h2>#}
+{#                                    </a>#}
+{#                                    <span class="fl">难度：<i class="key">{{ course.get_degree_display }}</i></span>#}
+{#                                    <span class="fr">学习人数：{{ course.students }}</span>#}
+{#                                </div>#}
+{#                                <div class="bottom">#}
+{#                                    <span class="fl" title="慕课网">{{ course.course_org.name }}</span>#}
+{#                                    <span class="star fr">{{ course.fav_nums }}</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    <section>#}
+{#        <div class="module greybg">#}
+{#            <div class="wp">#}
+{#                <h1>课程机构</h1>#}
+{#                <div class="module3 eachmod">#}
+{#                    <div class="module3_1 left">#}
+{#                        <img width="228" height="463" src="{% static 'images/module3_1.jpg' %}"/>#}
+{#                        <p class="fisrt_word">名校来袭<br/>权威认证</p>#}
+{#                        <a class="more" href="{% url 'org:list' %}">android{{ android }} ></a>#}
+{#                    </div>#}
+{#                    <div class="right">#}
+{#                        <ul>#}
+{#                            {% for org in course_orgs %}#}
+{#                                <li class="{% if forloop.counter|divisibleby:5 %}five{% endif %}">#}
+{#                                    <a href="{% url 'org:home' org.id %}">#}
+{#                                        <div class="company">#}
+{#                                            <!-- <img width="184" height="100" src="{{ org.image.url }}"/> -->#}
+{#                                            <img width="100" height="100" src="{{ org.image.url }}"/>#}
+{#                                            课程机构鼠标悬停的效果#}
+{#                                                                                    <div class="score">#}
+{#                                                                                        <div class="circle">#}
+{#                                                                                            <h2>{{ org.tag }}</h2>#}
+{#                                                                                        </div>#}
+{#                                                                                    </div>#}
+{##}
+{#                                        </div>#}
+{#                                        <dl style="margin-left: 20px">#}
+{#                                                <dt>#}
+{#                                                    <a href="">一起分享</a>#}
+{#                                                </dt>#}
+{#                                            </dl>#}
+{##}
+{#                                        <p><span class="key" title="{{ org.name }}">{{ org.name }}</span></p>#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                            {% endfor %}#}
+{##}
+{##}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{##}
+{#    <br/>#}
+{#    <div id="category_52" class="bm_c" style="">#}
+{#                            <table cellspacing="0" cellpadding="0" class="fl_tb">#}
+{#                                <tr>#}
+{#                                    <td class="fl_g" width="24.9%">#}
+{#                                        <div class="fl_icn_g deanbbs_icon deanactions swing" style="width: 56px;">#}
+{#                                            <a href="https://www.itjc8.com/forum-54-1.html"><img#}
+{#                                                    src="data/attachment/common/a6/common_54_icon.png" align="left"#}
+{#                                                    alt=""/></a>#}
+{#                                            <div class="deantodayposts_bbs" title="今日"> 1</div>#}
+{#                                        </div>#}
+{#                                        <dl style="margin-left: 56px;">#}
+{#                                            <dt>#}
+{#                                                <a href="https://www.itjc8.com/forum-54-1.html">网络技术</a>#}
+{##}
+{##}
+{#                                            </dt>#}
+{#                                            <em>主题: 21</em>&nbsp;<em>帖数: 2182</em>#}
+{##}
+{#                                            <dd>#}
+{#                                                <a href="https://www.itjc8.com/forum.php?mod=redirect&amp;tid=237&amp;goto=lastpost#lastpost">最后发表:#}
+{#                                                    <span title="2020-1-10 08:43">2&nbsp;小时前</span></a>#}
+{#                                            </dd>#}
+{#                                        </dl>#}
+{#                                    </td>#}
+{#                                    <td class="fl_g" width="24.9%">#}
+{#                                        <div class="fl_icn_g deanbbs_icon deanactions swing" style="width: 56px;">#}
+{#                                            <a href="https://www.itjc8.com/forum-55-1.html"><img#}
+{#                                                    src="data/attachment/common/b5/common_55_icon.png" align="left"#}
+{#                                                    alt=""/></a>#}
+{#                                            <div class="deantodayposts_bbs" title="今日"> 4</div>#}
+{#                                        </div>#}
+{#                                        <dl style="margin-left: 56px;">#}
+{#                                            <dt>#}
+{#                                                <a href="https://www.itjc8.com/forum-55-1.html">系统与运维</a>#}
+{##}
+{##}
+{#                                            </dt>#}
+{#                                            <em>主题: 75</em>&nbsp;<em>帖数: 8406</em>#}
+{##}
+{#                                            <dd>#}
+{#                                                <a href="https://www.itjc8.com/forum.php?mod=redirect&amp;tid=4269&amp;goto=lastpost#lastpost">最后发表:#}
+{#                                                    <span title="2020-1-10 09:13">1&nbsp;小时前</span></a>#}
+{#                                            </dd>#}
+{#                                        </dl>#}
+{#                                    </td>#}
+{#                                    <td class="fl_g" width="24.9%">#}
+{#                                        <div class="fl_icn_g deanbbs_icon deanactions swing" style="width: 56px;">#}
+{#                                            <a href="https://www.itjc8.com/forum-56-1.html"><img#}
+{#                                                    src="data/attachment/common/9f/common_56_icon.png" align="left"#}
+{#                                                    alt=""/></a>#}
+{#                                            <div class="deantodayposts_bbs" title="今日"> 3</div>#}
+{#                                        </div>#}
+{#                                        <dl style="margin-left: 56px;">#}
+{#                                            <dt>#}
+{#                                                <a href="https://www.itjc8.com/forum-56-1.html">网络安全</a>#}
+{##}
+{##}
+{#                                            </dt>#}
+{#                                            <em>主题: 20</em>&nbsp;<em>帖数: 1578</em>#}
+{##}
+{#                                            <dd>#}
+{#                                                <a href="https://www.itjc8.com/forum.php?mod=redirect&amp;tid=3708&amp;goto=lastpost#lastpost">最后发表:#}
+{#                                                    <span title="2020-1-10 08:46">2&nbsp;小时前</span></a>#}
+{#                                            </dd>#}
+{#                                        </dl>#}
+{#                                    </td>#}
+{#                                    <td class="fl_g" width="24.9%">#}
+{#                                        <div class="fl_icn_g deanbbs_icon deanactions swing" style="width: 56px;">#}
+{#                                            <a href="https://www.itjc8.com/forum-59-1.html"><img#}
+{#                                                    src="{{ android.image.url }}" align="left"#}
+{#                                                    alt=""/></a></div>#}
+{#                                        <dl style="margin-left: 56px;">#}
+{#                                            <dt>#}
+{#                                                <a href="https://www.itjc8.com/forum-59-1.html">黑客教程</a>#}
+{##}
+{##}
+{#                                            </dt>#}
+{#                                            <em>主题: 14</em>&nbsp;<em>帖数: {{ android.course_nums }}</em>#}
+{##}
+{#                                            <dd>#}
+{#                                                <a href="https://www.itjc8.com/forum.php?mod=redirect&amp;tid=244&amp;goto=lastpost#lastpost">最后发表:#}
+{#                                                    <span title="2020-1-9 09:24">昨天&nbsp;09:24</span></a>#}
+{#                                            </dd>#}
+{#                                        </dl>#}
+{#                                    </td>#}
+{#                                </tr>#}
+{#                            </table>#}
+{#                        </div>#}
+{#{% endblock %}#}
+{##}
+{#{% block custom_js %}#}
+{#    <script src="{% static 'js/selectUi.js' %}" type='text/javascript'></script>#}
+{#    <script src="{% static 'js/deco-common.js' %}" type='text/javascript'></script>#}
+{#    <script type="text/javascript" src="{% static 'js/plugins/laydate/laydate.js' %}"></script>#}
+{#    <script src="{% static 'js/plugins/layer/layer.js' %}"></script>#}
+{#    <script src="{% static 'js/plugins/queryCity/js/public.js' %}" type="text/javascript"></script>#}
+{#    <script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>#}
+{#    <script src="{% static 'js/plugins/jquery.scrollLoading.js' %}" type="text/javascript"></script>#}
+{#    <script src="{% static 'js/deco-common.js' %}" type="text/javascript"></script>#}
+{##}
+{#    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>#}
+{#{% endblock %}#}
+{##}
+{##}
+{##}
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#{% load staticfiles %}#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'css/index-style.css' %}">#}
+{#</head>#}
+{#<body>#}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index-style.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="title">
+
+    </div>
+    <div class="toubu">
+
+
+    </div>
+    <div class="yuyan_title">
+        <h4>编程开发</h4>
+
+    </div>
+    <div class="index-content">
+
+        <table cellspacing="0" cellpadding="0" class="index_table">
+            <tbody>
+            <tr>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' web.id %}">
+                            <img class="img_icon" src="{{ web.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' web.id %}" class="title_name">{{ web.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ web.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' web.id %}">学习人数：
+                                <span title="">{{ web.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' java.id %}">
+                            <img class="img_icon" src="{{ java.image.url }}" align="left">
+
+                        </a>
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' java.id %}" class="title_name">{{ java.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ java.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' java.id %}">学习人数：
+                                <span title="">{{ java.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' python.id %}">
+                            <img class="img_icon" src="{{ python.image.url }}" align="left">
+                        </a>
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' python.id %}" class="title_name">{{ python.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ python.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' python.id %}">学习人数：
+                                <span title="">{{ python.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' python.id %}">
+                            <img class="img_icon" src="{{ php.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' php.id %}" class="title_name">{{ php.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ php.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' php.id %}">学习人数：
+                                <span title="">{{ php.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' bigdata.id %}">
+                            <img class="img_icon" src="{{ bigdata.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' bigdata.id %}" class="title_name">{{ bigdata.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ bigdata.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' bigdata.id %}">学习人数：
+                                <span title="">{{ bigdata.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' mstudy.id %}">
+                            <img class="img_icon" src="{{ mstudy.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' mstudy.id %}" class="title_name">{{ mstudy.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ mstudy.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' mstudy.id %}">学习人数：
+                                <span title="">{{ mstudy.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' ios.id %}">
+                            <img class="img_icon" src="{{ ios.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' ios.id %}" class="title_name">{{ ios.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ ios.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' ios.id %}">学习人数：
+                                <span title="">{{ ios.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' android.id %}">
+                            <img class="img_icon" src="{{ android.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' android.id %}" class="title_name">{{ android.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ android.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' android.id %}">学习人数：
+                                <span title="">{{ android.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' wechat.id %}">
+                            <img class="img_icon" src="{{ wechat.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' wechat.id %}" class="title_name">{{ wechat.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ wechat.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' wechat.id %}">学习人数：
+                                <span title="">{{ wechat.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' c.id %}">
+                            <img class="img_icon" src="{{ c.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' c.id %}" class="title_name">{{ c.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ c.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' c.id %}">学习人数：
+                                <span title="">{{ c.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' net.id %}">
+                            <img class="img_icon" src="{{ net.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' net.id %}" class="title_name">{{ net.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ net.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' net.id %}">学习人数：
+                                <span title="">{{ net.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' ps.id %}">
+                            <img class="img_icon" src="{{ ps.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' ps.id %}" class="title_name">{{ ps.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ ps.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' ps.id %}">学习人数：
+                                <span title="">{{ ps.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' database.id %}">
+                            <img class="img_icon" src="{{ database.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' database.id %}" class="title_name">{{ database.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ database.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' database.id %}">学习人数：
+                                <span title="">{{ database.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' xitong.id %}">
+                            <img class="img_icon" src="{{ xitong.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' xitong.id %}" class="title_name">{{ xitong.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ xitong.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' xitong.id %}">学习人数：
+                                <span title="">{{ xitong.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' heike.id %}">
+                            <img class="img_icon" src="{{ heike.image.url }}" align="left">
+                        </a>
+
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' heike.id %}" class="title_name">{{ heike.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ heike.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' heike.id %}">学习人数：
+                                <span title="">{{ heike.click_nums }}&nbsp;人</span></a>
+                        </dd>
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a href="{% url 'org:home' morelangue.id %}">
+
+                        </a>
+                        <img class="img_icon" src="{{ morelangue.image.url }}" align="left">
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="{% url 'org:home' morelangue.id %}" class="title_name">{{ morelangue.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ morelangue.course_nums }}</em>
+
+                        <dd>
+                            <a href="{% url 'org:home' morelangue.id %}">学习人数：
+                                <span title="">{{ morelangue.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="yuyan_title">
+        <h4>设计与影音</h4>
+
+    </div>
+    <div class="index-content">
+
+        <table cellspacing="0" cellpadding="0" class="index_table">
+            <tbody>
+            <tr>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <img class="img_icon" src="{{ web.image.url }}" align="left">
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="#" class="title_name">{{ web.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ web.course_nums }}</em>
+
+                        <dd>
+                            <a href="#">学习人数：
+                                <span title="">{{ web.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <img class="img_icon" src="{{ java.image.url }}" align="left">
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="#" class="title_name">{{ java.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ java.course_nums }}</em>
+
+                        <dd>
+                            <a href="#">学习人数：
+                                <span title="">{{ java.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <img class="img_icon" src="{{ python.image.url }}" align="left">
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="#" class="title_name">{{ python.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ python.course_nums }}</em>
+
+                        <dd>
+                            <a href="#">学习人数：
+                                <span title="">{{ python.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <img class="img_icon" src="{{ mstudy.image.url }}" align="left">
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a href="#" class="title_name">{{ mstudy.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ mstudy.course_nums }}</em>
+
+                        <dd>
+                            <a href="#">学习人数：
+                                <span title="">{{ mstudy.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}
+{#</body>#}
+{#</html>#}

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index-style.css' %}">
+</head>
+<body>
+<div class="title">
+
+</div>
+<div class="toubu">
+
+
+</div>
+<div class="yuyan_title">
+    <h4>编程开发</h4>
+
+</div>
+<div class="index-content">
+
+    <table cellspacing="0" cellpadding="0" class="index_table">
+        <tbody>
+        <tr>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ web.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ web.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ web.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ web.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ java.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ java.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ java.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ java.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ python.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ python.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ python.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ python.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ php.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ php.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ php.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ php.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ bigdata.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ bigdata.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ bigdata.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ bigdata.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ mstudy.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ mstudy.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ mstudy.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ mstudy.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ ios.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ ios.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ ios.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ ios.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ android.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ android.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ android.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ android.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ wechat.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ wechat.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ wechat.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ wechat.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ c.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ c.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ c.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ c.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ net.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ net.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ net.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ net.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ ps.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ ps.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ ps.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ ps.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ database.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ database.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ database.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ database.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ xitong.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ xitong.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ xitong.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ xitong.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ heike.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ heike.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ heike.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ heike.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ morelangue.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ morelangue.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ morelangue.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ morelangue.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="yuyan_title">
+    <h4>设计与影音</h4>
+
+</div>
+<div class="index-content">
+
+    <table cellspacing="0" cellpadding="0" class="index_table">
+        <tbody>
+        <tr>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ web.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ web.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ web.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ web.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ java.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ java.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ java.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ java.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ python.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ python.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ python.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ python.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+            <td class="fl_g" width="24.9%">
+                <div class="td_icon">
+                    <img class="img_icon" src="{{ mstudy.image.url }}" align="left">
+
+                </div>
+                <dl style="margin-left: 56px">
+                    <dt>
+                        <a href="#" class="title_name">{{ mstudy.name }}</a>
+                    </dt>
+                    <em>课程数:&nbsp;&nbsp;{{ mstudy.course_nums }}</em>
+
+                    <dd>
+                        <a href="#">学习人数：
+                            <span title="">{{ mstudy.click_nums }}&nbsp;人</span></a>
+                    </dd>
+
+                </dl>
+
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

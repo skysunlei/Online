@@ -1,0 +1,90 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: #EAEAEA;
+}
+
+.fl_g h2 a,dt a{
+    font-size: 18px;
+    font-weight: bold;
+    color: #1396ff;
+    text-decoration: none;
+}
+
+em{
+    font-size: 18px;
+    font-style: normal;
+}
+
+dd a{
+
+     font-size: 18px;
+    color: #2a2c2e;
+    text-decoration: none;
+}
+
+.title{
+    width: 100%;
+    height: 80px;
+    background-color: #00a0f0;
+}
+.toubu{
+    width: auto;
+    height: 100px;
+    margin: 10px 150px;
+    background-color: #00ad29;
+}
+.index-content{
+    width: auto;
+    height: auto;
+    margin: 1px 150px;
+    /*background-color: #2a6496;*/
+
+}
+
+
+.yuyan_title{
+    width: auto;
+    height: 35px;
+    margin: 20px 150px 0px 150px;
+    background-color: #FFFFFF;
+}
+.yuyan_title>h4{
+    font-size: 20px;
+    padding-left: 16px;
+    color: #666666;
+    font-weight: normal;
+    margin: 1px 0 0 0;
+    line-height: 38px;
+
+}
+
+.index_table{
+    width: 100%;
+    height: auto;
+}
+table{
+    background-color: #FFFFFF;
+    empty-cells: show;
+    border-collapse: collapse;
+}
+.td_icon{
+    width: 100%;
+    height: auto;
+}
+
+.img_icon{
+    width: 69px;
+    height: 69px;
+}
+
+td{
+    padding: 20px 10px;
+}
+
+.title_name{
+    font-size: 25px;
+}

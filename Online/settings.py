@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'mm*91i^6og%h$j8l&t_qfe%u@svor0r57f*!wp_968gas$*6p-'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -45,6 +43,7 @@ INSTALLED_APPS = [
     'xadmin',
     'DjangoUeditor',
     'pure_pagination',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Online.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -95,7 +93,6 @@ DATABASES = {
 
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -115,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 AUTH_USER_MODEL = "users.UserProfile"
 
 # Internationalization
@@ -131,7 +127,6 @@ USE_L10N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
@@ -140,12 +135,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#本地开发的时候要把这个注释掉
-#STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-#关闭uwsgi 用pkill -f uwsgi 执行后它会自动重启
+# 本地开发的时候要把这个注释掉
+# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+# 关闭uwsgi 用pkill -f uwsgi 执行后它会自动重启
 # 分页相关设置
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 10,
@@ -153,14 +147,3 @@ PAGINATION_SETTINGS = {
 
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,
 }
-
-
-
-
-
-
-
-
-
-
-

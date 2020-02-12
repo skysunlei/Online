@@ -4,6 +4,7 @@ from django.db import models
 
 from apps.users.models import BaseModel
 from apps.organizations.models import Teacher, CourseOrg
+from DjangoUeditor.models import UEditorField
 
 
 # Create your models here.
@@ -25,8 +26,9 @@ class Course(BaseModel):
     youneed_know = models.CharField(default="", max_length=300, verbose_name="课程须知")
     teacher_tell = models.CharField(default="", max_length=300, verbose_name="老师告诉你")
     is_classics = models.BooleanField(default=False, verbose_name="是否经典")
-    detail = models.TextField(verbose_name="课程详情")
-    is_banner = models.BooleanField(default=False,verbose_name="是否是广告位")
+    detail = UEditorField(verbose_name="课程详情", width=600, height=300, imagePath="courses/ueditor/images/",
+                          filePath="courses/ueditor/files/", default="")
+    is_banner = models.BooleanField(default=False, verbose_name="是否是广告位")
     image = models.ImageField(upload_to="courses/%Y/%m", verbose_name="封面图", max_length=100)
 
     class Meta:

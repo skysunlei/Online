@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
-	<title>慕学在线网登录</title>
+	<title>资料共享网注册</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 </head>
@@ -17,9 +17,8 @@
         <div class="wp header-box">
             <p class="fl hd-tips">资料共享网，在线学习平台！</p>
             <ul class="fr hd-bar">
-                <li>服务电话：<span>33333333</span></li>
-                <li class="active"><a >[登录]</a></li>
-                <li><a href="{% url 'register' %}">[注册]</a></li>
+                <li>官方邮箱：<span>33333333</span></li>
+
             </ul>
         </div>
     </div>
@@ -29,7 +28,7 @@
         <div class="login-box clearfix">
             <div class="hd-login clearfix">
                 <a class="index-logo" href="{% url 'index' %}"></a>
-                <h1>欢迎您回来</h1>
+                <h1>欢迎加入资料共享网</h1>
                 <a class="index-font" href="{% url 'index' %}">回到首页</a>
             </div>
             <div class="fl slide">
@@ -45,29 +44,30 @@
             </div>
             <div class="fl form-box">
                 <div class="tab">
-                    <h2 class="active">账号登录</h2>
+                    <h2 class="active">账号注册</h2>
+
                 </div>
-                <form class="tab-form" action="{% url 'login' %}?next={{ next }}" method="post" autocomplete="off" id="form1">
+                <form class="tab-form" action="{% url 'register' %}" method="post" autocomplete="off" id="form1">
                     <div class="form-group marb20 {% if login_form.errors.username %}errorput{% endif %}">
-                        <input name="username" id="account_l" value="{{ login_form.username.value }}" type="text" placeholder="手机号/邮箱" />
+                        <input name="username" id="account_l" value="{{ login_form.username.value }}" type="text" placeholder="账号" />
                     </div>
                     <div class="form-group marb8 {% if login_form.errors.password %}errorput{% endif %}">
                         <input name="password" id="password_l" type="password" placeholder="请输入您的密码" />
                     </div>
                  <div class="form-group marb20 blur" id="jsRefreshCode">
-                       {{ dynamicloginform.captcha }}
+                       {{ login_form.captcha }}
                     </div>
 
                     <div class="error btns login-form-tips" id="jsLoginTips">{% for key, error in login_form.errors.items %}{{ error }}{% endfor %}
                     {{ msg }}</div>
                      <div class="auto-box marb38">
-						<a class="fr" href="forgetpwd.html">忘记密码？</a>
+
                      </div>
-                     <input class="btn btn-green" id="jsLoginBtn" type="submit" value="立即登录 > " />
+                     <input class="btn btn-green" id="jsLoginBtn" type="submit" value="注册并登陆 > " />
                     {% csrf_token %}
                 </form>
 
-                <p class="form-p">没有帐号？<a href="{% url 'register' %}">[立即注册]</a></p>
+                <p class="form-p">已有帐号？<a href="{% url 'login' %}">[立即登陆]</a></p>
             </div>
         </div>
     </div>

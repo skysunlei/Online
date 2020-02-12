@@ -19,7 +19,7 @@
                         <img width="214" height="195" src="{{ MEDIA_URL }}{{ course.image }}"/>
                     </a>
                     <div class="des">
-                        <a href="{% url 'course:detail' course.id %}"><h2>{{ course.name }}</h2></a>
+                        <a href="{% url 'course:detail' course.id %}"><h3>{{ course.name }}</h3></a>
                         <span class="fl">课时：<i class="key">{{ course.learn_times }}</i></span>
                         <span class="fr">学习人数：{{ course.students }}</span>
                     </div>

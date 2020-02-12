@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ course.name }}章节信息{% endblock %}
+{% block title %}{{ course.name }}学员评论{% endblock %}
 {% load staticfiles %}
 {% block custom_bread %}
     <section>
@@ -116,22 +116,38 @@
                 <div class="left layout">
                     <div class="head">
                         <ul class="tab_header">
-                            <li class="active">章节目录</li>
-                            <li class=""><a href="{% url 'course:detail_comments' course.id%}">学员评论</a></li>
+                            <li class=""><a href="{% url 'course:detail' course.id%}">章节目录</a></li>
+                            <li class="active">学员评论</li>
                         </ul>
 
                     </div>
-                                        <div class="tab_cont tab_cont1">
-                                            {% autoescape off %}{{ course.detail }}{% endautoescape %}
-                                        </div>
-                                        <div class="tab_cont tab_cont2">
-                                            <div class="comment">
-                                                <div class="comenlist">
 
-                                                </div>
-                                            </div>
+                    <div id="course_note">
+                        <ul class="mod-post" id="comment-list">
+                            {% for comment in comments %}
+                                <li class="post-row">
+                                    <div class="media">
+                                        <span target="_blank"><img src='{{ comment.user.image.url }}' width='40'
+                                                                   height='40'/></span>
+                                    </div>
+                                    <div class="bd">
+                                        <div class="tit">
+                                            <span target="_blank">{{ comment.user.nick_name }}</span>
+                                            {% if comment.user.is_VIP is  True %}
+                                                <img  src="/static/images/vip.jpg" width="16"height="16"/>{% else %}<img  src="/static/images/huiyuan.gif" width="16"height="16"/>
+                                                {% endif %}
                                         </div>
+                                        <p class="cnt">{{ comment.comments }}</p>
+                                        <div class="footer clearfix">
+                                            <span title="创建时间" class="l timeago">{{ comment.add_time }}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
 
+
+                        </ul>
+                    </div>
                 </div>
 
 

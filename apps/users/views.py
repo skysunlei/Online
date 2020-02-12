@@ -10,7 +10,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.courses.models import Course
 from apps.operations.models import UserCourse, UserFavorite, UserMessage
 from apps.organizations.models import CourseOrg
-from apps.users.forms import LoginForm, ChangePwdForm
+from apps.users.forms import LoginForm, ChangePwdForm, DynamicLoginForm
+
+from apps.users.models import UserProfile
 
 
 # 配置消息未读全局变量
@@ -145,51 +147,54 @@ class LogoutView(View):
         return HttpResponseRedirect(reverse("index"))
 
 
+class RegisterView(View):
+    def get(self, request, *args, **kwargs):
+        login_form = DynamicLoginForm()
+        return render(request, "register.html", {
+
+            "login_form": login_form,
+
+        })
+
+    def post(self, request, *args, **kwargs):
+        login_form = DynamicLoginForm()
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user_is_valid = UserProfile.objects.filter(username=username)
+        print(user_is_valid.count())
+        if user_is_valid.count() != 0:
+            return render(request, "register.html", {
+                "msg": "用户名已存在", "login_form": login_form
+            })
+        else:
+            user = UserProfile(username=username)
+            user.set_password(password)
+            user.mobile = "11111111111"
+            user.nick_name = username
+            user.is_VIP = False
+            user.save()
+            login(request, user)
+            return HttpResponseRedirect(reverse("index"))
+            # return render(request, "register.html",{
+            #     "msg": "用户名不存在或密码错误"
+            # })
+
+
 class LoginView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return HttpResponseRedirect(reverse("index"))
         next = request.GET.get("next", "")
-        android = CourseOrg.objects.get(id=1)
-        web = CourseOrg.objects.get(id=2)
-        php = CourseOrg.objects.get(id=3)
-        java = CourseOrg.objects.get(id=4)
-        wechat = CourseOrg.objects.get(id=5)
-        c = CourseOrg.objects.get(id=6)
-        python = CourseOrg.objects.get(id=7)
-        ios = CourseOrg.objects.get(id=8)
-        net = CourseOrg.objects.get(id=9)
-        database = CourseOrg.objects.get(id=10)
-        bigdata = CourseOrg.objects.get(id=11)
-        mstudy = CourseOrg.objects.get(id=12)
-        xitong = CourseOrg.objects.get(id=13)
-        heike = CourseOrg.objects.get(id=14)
-        ps = CourseOrg.objects.get(id=15)
-        morelangue = CourseOrg.objects.get(id=16)
-        course_orgs = CourseOrg.objects.all()[:4]
+
+        dynamicloginform = DynamicLoginForm()
         return render(request, "index-test.html", {
             "next": next,
-            "course_orgs": course_orgs,
-            "android": android,
-            "web": web,
-            "php": php,
-            "java": java,
-            "wechat": wechat,
-            "c": c,
-            "python": python,
-            "ios": ios,
-            "net": net,
-            "database": database,
-            "bigdata": bigdata,
-            "mstudy": mstudy,
-            "xitong": xitong,
-            "heike": heike,
-            "ps": ps,
-            "morelangue": morelangue
+            "dynamicloginform": dynamicloginform,
+
         })
 
     def post(self, request, *args, **kwargs):
-
+        dynamicloginform = DynamicLoginForm()
         # 表单验证
         login_form = LoginForm(request.POST)
 
@@ -205,6 +210,7 @@ class LoginView(View):
                     return HttpResponseRedirect(next)
                 return HttpResponseRedirect(reverse("index"))
             else:
-                return render(request, "login.html", {"msg": "用户名不存在或密码错误", "login_form": login_form})
+                return render(request, "index-test.html",
+                              {"msg": "用户名不存在或密码错误", "login_form": login_form, "dynamicloginform": dynamicloginform})
         else:
-            return render(request, "login.html", {"login_form": login_form})
+            return render(request, "index-test.html", {"login_form": login_form, "dynamicloginform": dynamicloginform})

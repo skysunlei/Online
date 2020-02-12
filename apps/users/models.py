@@ -25,7 +25,9 @@ class UserProfile(AbstractUser):
     gender = models.CharField(verbose_name="性别", choices=GENDER_CHOICES, max_length=6)
     address = models.CharField(max_length=100, verbose_name="地址", default="")
     mobile = models.CharField(max_length=11, verbose_name="手机号码")
-    image = models.ImageField(upload_to="head_image/%Y/%m", default="", verbose_name="用户头像")
+    is_VIP = models.BooleanField(default=False, verbose_name="是否是VIP")
+    image = models.ImageField(upload_to="head_image/%Y/%m", default="head_image/2019/12/default_middile_1.png",
+                              null=True, blank=True, verbose_name="用户头像")
 
     class Meta:
         verbose_name = "用户信息"

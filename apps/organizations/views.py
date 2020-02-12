@@ -107,10 +107,10 @@ class OrgCourseView(View):
 
             # Provide Paginator with the request object for complete querystring generation
 
-        p = Paginator(all_courses, per_page=12, request=request)
+        p = Paginator(all_courses, per_page=9, request=request)
 
         course = p.page(page)
-        return render(request, "org-detail-course.html", {
+        return render(request, "org-detail-desc.html", {
             "all_courses": course,
             "course_org": course_org,
             "current_page": current_page,

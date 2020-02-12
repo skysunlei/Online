@@ -104,27 +104,27 @@
 <section>
     <div class="wp">
         <ul class="crumbs">
-            <li><a href="{% url 'index' %}">首页</a>></li>
+            <li><a href="{% url 'index' %}"><h1>首页></h1></a></li>
 {#            <li><a href="{% url 'org:list' %}">课程机构</a>></li>#}
-            <li>{% block path_path %}机构首页{% endblock %}</li>
+            <li>{% block path_path %}<h1>机构首页</h1>{% endblock %}</li>
         </ul>
     </div>
 </section>
 
 <section>
     <div class="wp list personal_list comp">
-        <div class="left">
-            <ul>
+{#        <div class="left">#}
+{#            <ul>#}
 {#                <li class="{% ifequal current_page 'home' %}active2{% endifequal %}"><a#}
 {#                        href="{% url 'org:home' course_org.id %}">机构首页</a></li>#}
-                <li class="{% ifequal current_page 'course' %}active2{% endifequal %}"><a
-                        href="{% url 'org:course' course_org.id %}">课程视频</a></li>
-                <li class="{% ifequal current_page 'desc' %}active2{% endifequal %}"><a
-                        href="{% url 'org:desc' course_org.id %}">机构介绍</a></li>
-                <li class="{% ifequal current_page 'teacher' %}active2{% endifequal %}"><a
-                        href="{% url 'org:teacher' course_org.id %}">机构讲师</a></li>
-            </ul>
-        </div>
+{#                <li class="{% ifequal current_page 'course' %}active2{% endifequal %}"><a#}
+{#                        href="{% url 'org:course' course_org.id %}">课程视频</a></li>#}
+{#                <li class="{% ifequal current_page 'desc' %}active2{% endifequal %}"><a#}
+{#                        href="{% url 'org:desc' course_org.id %}">机构介绍</a></li>#}
+{#                <li class="{% ifequal current_page 'teacher' %}active2{% endifequal %}"><a#}
+{#                        href="{% url 'org:teacher' course_org.id %}">机构讲师</a></li>#}
+{#            </ul>#}
+{#        </div>#}
         {% block right_form %}
 
         {% endblock %}

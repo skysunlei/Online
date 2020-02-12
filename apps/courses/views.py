@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.courses.models import Course, CourseTag, CourseResource, Video
 from apps.operations.models import UserFavorite, UserCourse, CourseComments
 import requests
-import time
+from apps.users.models import UserProfile
 import re
 
 
@@ -84,7 +84,7 @@ class CourseCommentsView(LoginRequiredMixin, View):
         course.click_nums += 1
         course.save()
 
-        comments = CourseComments.objects.filter(course=course)
+        comments = CourseComments.objects.filter(course=course).order_by("-add_time")
         # 查询客户是否已经关联课程
         user_courses = UserCourse.objects.filter(user=request.user, course=course)
         if not user_courses:
@@ -98,16 +98,39 @@ class CourseCommentsView(LoginRequiredMixin, View):
         all_courses = UserCourse.objects.filter(user_id__in=user_ids).order_by("-course__click_nums")[:5]
         related_courses = [user_course.course for user_course in all_courses if user_course.course.id != course.id]
 
-        # 课程资源下载
-        course_resources = CourseResource.objects.filter(course=course)
+        is_VIP = request.user.is_VIP
 
-        return render(request, "course-comment.html", {
-            "course": course,
-            "course_resources": course_resources,
-            "related_courses": related_courses,
-            "comments": comments
+        if is_VIP is True:
+            # 课程资源下载
+            course_resources = CourseResource.objects.filter(course=course)
+            user_is_vip = "true"
+            return render(request, "course-comment.html", {
+                "course": course,
+                "course_resources": course_resources,
+                "related_courses": related_courses,
+                "user_is_vip": user_is_vip,
+                "comments": comments
 
-        })
+            })
+
+        else:
+            user_is_vip = "false"
+            # 课程资源下载
+            return render(request, "course-comment.html", {
+                "course": course,
+                "related_courses": related_courses,
+                "user_is_vip": user_is_vip,
+                "comments": comments
+
+            })
+
+            # return render(request, "course-comment.html", {
+            #     "course": course,
+            #     "course_resources": course_resources,
+            #     "related_courses": related_courses,
+            #     "comments": comments
+            #
+            # })
 
 
 # Create your views here.
@@ -134,14 +157,66 @@ class CourseLessonView(LoginRequiredMixin, View):
         all_courses = UserCourse.objects.filter(user_id__in=user_ids).order_by("-course__click_nums")[:5]
         related_courses = [user_course.course for user_course in all_courses if user_course.course.id != course.id]
 
-        # 课程资源下载
-        course_resources = CourseResource.objects.filter(course=course)
+        is_VIP = request.user.is_VIP
 
-        return render(request, "course-video.html", {
+        if is_VIP is True:
+            course_resources = CourseResource.objects.filter(course=course)
+            user_is_vip = "true"
+            return render(request, "course-video.html", {
+                "course": course,
+                "course_resources": course_resources,
+                "related_courses": related_courses,
+                "user_is_vip": user_is_vip
+
+            })
+
+        else:
+            user_is_vip = "false"
+            # 课程资源下载
+            return render(request, "course-video.html", {
+                "course": course,
+                "related_courses": related_courses,
+                "user_is_vip": user_is_vip
+
+            })
+
+
+class CourseDetailCommentsView(View):
+    def get(self, request, course_id, *args, **kwargs):
+        """
+        获取课程详情
+        """
+        course = Course.objects.get(id=int(course_id))
+        course.click_nums += 1
+        course.save()
+
+        comments = CourseComments.objects.filter(course=course).order_by("-add_time")
+        # 获取收藏状态
+        has_fav_course = False
+        has_fav_org = False
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user=request.user, fav_id=course_id, fav_type=1):
+                has_fav_course = True
+            if UserFavorite.objects.filter(user=request.user, fav_id=course.course_org.id, fav_type=2):
+                has_fav_org = True
+        # 通过课程的tag做课程的推荐
+        # tag = course.tag
+        # related_courses = []
+        # if tag:
+        #     related_courses = Course.objects.filter(tag=tag).exclude(id=course.id)[:3]
+        tags = course.coursetag_set.all()
+        tag_list = [tag.tag for tag in tags]
+
+        course_tags = CourseTag.objects.filter(tag__in=tag_list).exclude(course__id=course.id)
+        related_courses = set()
+        for course_tag in course_tags:
+            related_courses.add(course_tag.course)
+        return render(request, "course-detail-comment.html", {
             "course": course,
-            "course_resources": course_resources,
-            "related_courses": related_courses
-
+            "has_fav_course": has_fav_course,
+            "has_fav_org": has_fav_org,
+            "related_courses": related_courses,
+            "comments": comments
         })
 
 
@@ -153,6 +228,8 @@ class CourseDetailView(View):
         course = Course.objects.get(id=int(course_id))
         course.click_nums += 1
         course.save()
+
+        comments = CourseComments.objects.filter(course=course)
         # 获取收藏状态
         has_fav_course = False
         has_fav_org = False
@@ -177,7 +254,8 @@ class CourseDetailView(View):
             "course": course,
             "has_fav_course": has_fav_course,
             "has_fav_org": has_fav_org,
-            "related_courses": related_courses
+            "related_courses": related_courses,
+            "comments": comments
         })
 
 
@@ -201,7 +279,7 @@ class CourseListView(View):
 
         # Provide Paginator with the request object for complete querystring generation
 
-        p = Paginator(all_courses, per_page=3, request=request)
+        p = Paginator(all_courses, per_page=9, request=request)
 
         courses = p.page(page)
         return render(request, "course-list.html", {

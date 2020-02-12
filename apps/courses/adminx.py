@@ -8,6 +8,9 @@ class CourseAdmin(object):
     search_fields = ['name', 'desc', 'detail', 'degree', 'students']
     list_filter = ['name', 'teacher__name', 'desc', 'detail', 'degree', 'learn_times', 'students']
     list_editable = ["degree", "desc"]
+    style_fields = {
+        "detail": "ueditor"
+    }
 
 
 class LessonAdmin(object):

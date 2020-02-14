@@ -109,7 +109,7 @@ class CourseCommentsView(LoginRequiredMixin, View):
                 "course_resources": course_resources,
                 "related_courses": related_courses,
                 "user_is_vip": user_is_vip,
-                "comments": comments
+                "comments": comments,
 
             })
 
@@ -120,7 +120,7 @@ class CourseCommentsView(LoginRequiredMixin, View):
                 "course": course,
                 "related_courses": related_courses,
                 "user_is_vip": user_is_vip,
-                "comments": comments
+                "comments": comments,
 
             })
 
@@ -156,7 +156,8 @@ class CourseLessonView(LoginRequiredMixin, View):
         user_ids = [user_course.user.id for user_course in user_courses]
         all_courses = UserCourse.objects.filter(user_id__in=user_ids).order_by("-course__click_nums")[:5]
         related_courses = [user_course.course for user_course in all_courses if user_course.course.id != course.id]
-
+        comments = CourseComments.objects.filter(course=course)
+        comments_count = comments.count()
         is_VIP = request.user.is_VIP
 
         if is_VIP is True:
@@ -166,7 +167,8 @@ class CourseLessonView(LoginRequiredMixin, View):
                 "course": course,
                 "course_resources": course_resources,
                 "related_courses": related_courses,
-                "user_is_vip": user_is_vip
+                "user_is_vip": user_is_vip,
+                "comments_count": comments_count
 
             })
 
@@ -176,7 +178,8 @@ class CourseLessonView(LoginRequiredMixin, View):
             return render(request, "course-video.html", {
                 "course": course,
                 "related_courses": related_courses,
-                "user_is_vip": user_is_vip
+                "user_is_vip": user_is_vip,
+                "comments_count": comments_count
 
             })
 
@@ -230,6 +233,7 @@ class CourseDetailView(View):
         course.save()
 
         comments = CourseComments.objects.filter(course=course)
+        comments_count = comments.count()
         # 获取收藏状态
         has_fav_course = False
         has_fav_org = False
@@ -255,7 +259,7 @@ class CourseDetailView(View):
             "has_fav_course": has_fav_course,
             "has_fav_org": has_fav_org,
             "related_courses": related_courses,
-            "comments": comments
+            "comments_count": comments_count
         })
 
 

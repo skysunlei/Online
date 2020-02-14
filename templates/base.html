@@ -99,7 +99,7 @@
                                 </a>
                             </li>
                             <li class="{% if request.path|slice:'13' == '/org/teachers' %}active{% endif %}">
-                                <a href="{% url 'org:teachers' %}">免费软件大全</a>
+                                <a href="{% url 'org:teachers' %}">全站vip</a>
                             </li>
                             <li class="{% if request.path|slice:'13' != '/org/teachers' %}{% if request.path|slice:'4' == '/org' %}{% endif %}{% endif %}"><a href="{% url 'org:list' %}">电子书</a></li>
                         </ul>

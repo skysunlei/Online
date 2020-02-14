@@ -40,7 +40,7 @@
                             </div>
                             <ul class="parameter">
                                 <li><span
-                                        class="pram word3"></span><span><h3>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：{{ course.learn_times }}分钟</h3></span>
+                                        class="pram word3"></span><span><h3>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：{{ course.learn_times }}小时</h3></span>
                                 </li>
                                 <li><span
                                         class="pram word3"></span><span><h3>章&nbsp;节&nbsp;数： {{ course.lesson_nums }}</h3></span>
@@ -134,7 +134,7 @@
                                         <div class="tit">
                                             <span target="_blank">{{ comment.user.nick_name }}</span>
                                             {% if comment.user.is_VIP is  True %}
-                                                <img  src="/static/images/vip.jpg" width="16"height="16"/>{% else %}<img  src="/static/images/huiyuan.gif" width="16"height="16"/>
+                                                <img  src="/static/images/vip.jpg" width="17"height="17"/>{% else %}<img  src="/static/images/huiyuan.gif" width="16"height="16"/>
                                                 {% endif %}
                                         </div>
                                         <p class="cnt">{{ comment.comments }}</p>

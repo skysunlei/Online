@@ -1,119 +1,111 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block title %}讲师列表页{% endblock %}
-{% block custom_bread %}
-    <section>
-        <div class="wp">
-            <ul class="crumbs">
-                <li><a href="{% url 'index' %}">首页</a>></li>
-                <li>讲师</li>
-            </ul>
-        </div>
-    </section>
+{% block title %}vip开通{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vip-style.css' %}">
 {% endblock %}
 {% block content %}
-    <section>
-        <div class="wp butler_list_box list">
-            <div class='left'>
-                <div class="butler_list layout">
-                    <div class="head">
-                        <ul class="fl tab_header">
-                            <li class="{% if sort == "" %}active{% endif %}"><a href="?sort=">全部</a></li>
-                            <li class="{% if sort == "hot" %}active{% endif %}"><a href="?sort=hot">人气 &#8595;</a></li>
-                        </ul>
-                        <div class="fr butler-num">共<span class="key">{{ teacher_nums }}</span>人&nbsp;&nbsp;&nbsp;</div>
-                    </div>
-                    {% for teacher in teachers.object_list %}
-                        <dl class="des">
-                            <dt>
-                                <a href="{% url 'org:teacher_detail' teacher.id %}">
-                                    <div class="picpic">
-                                        <img width="100" height="100" class="scrollLoading"
-                                             src="{{ teacher.image.url }}"/>
-                                    </div>
-                                </a>
-                            <div class="btn">
-                                <div class="fr btn2 bdsharebuttonbox"
-                                     data-text="授课教师-奥巴马-慕学在线"
-                                     data-desc="我在#慕课网#发现了教师“奥巴马”，对学习中的小伙伴很有帮助，一起来看看吧。"
-                                     data-comment="奥巴马金牌讲师，从业年限：5年"
-                                     data-tag="share_1"
-                                >
-                                    <span class="fl">分享</span>
-                                    <a href="#" class="bds_more" data-cmd="more"></a>
-                                </div>
-                            </div>
-                            </dt>
-                            <dd>
-                                <a href="{% url 'org:teacher_detail' teacher.id %}">
-                                    <h1>bobby<span class="key picbig">金牌讲师</span></h1>
-                                </a>
-                                <ul class="cont">
-                                    <li>工作年限：<span>{{ teacher.work_years }}年</span></li>
-                                    <li>工作职位：<span>{{ teacher.work_position }}</span></li>
-                                    <li>就职公司：<span>{{ teacher.work_company }}&nbsp;</span></li>
-                                    <li>年龄：<span>{{ teacher.age }}岁</span></li>
-                                    <li>教学特点：<span>{{ teacher.points }}</span></li>
-                                </ul>
-                            </dd>
-                            <a class="buy buyservice" href="{% url 'org:teacher_detail' teacher.id %}"><br/>查看<br/>详情</a>
-                        </dl>
-                    {% endfor %}
 
+    <div class="vip-title">
+        {#    <img class="vip-title-image" src="{% static 'images/vip_banner_2_0a5bb4e.jpg' %}">#}
+        <h2>价值够大，价格够低</h2>
+        <p class="desc">在这里，和300多万人一起，养成每天有学习、有进步的习惯，无论你是新入职场，还是在职提升，通过极客学院提供的内容和服务，让职业生涯持续进步，并创造更大价值。</p>
 
-                </div>
-                <div class="pageturn">
-                    <ul class="pagelist">
-                        {% if teachers.has_previous %}
-                            <li class="long"><a href="?{{ teachers.previous_page_number.querystring }}">上一页</a></li>
-                        {% endif %}
-                        {% for page in teachers.pages %}
-                            {% if page %}
-                                {% ifequal page teachers.number %}
-                                    <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
-                                {% else %}
-                                    <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
-                                {% endifequal %}
-                            {% else %}
-                                <li class="none">...</li>
-                            {% endif %}
-                        {% endfor %}
-                        {% if teachers.has_next %}
-                            <li class="long"><a href="?{{ teachers.next_page_number.querystring }}">下一页</a></li>
-                        {% endif %}
-                        {#                    <li class="active"><a href="?page=1">1</a></li>#}
-                        {#                    <li><a href="?page=2" class="page">2</a></li>#}
-                        {#                    <li><a href="?page=3" class="page">3</a></li>#}
-                        {#                    <li class="long"><a href="?page=2">下一页</a></li>#}
+        <div class="contain">
+            <ul class="vip-ul">
+                <li class="vip-li">
+                    <img class="pic" src="{% static 'images/vip_banner_icon_4_2320c7b.png' %}"
+                         alt="教程视频">
+                    <p class="num">1500+</p>
+                    <h3>教程视频</h3>
+                </li>
 
+                <li class="vip-li">
+                    <img class="pic" src="{% static 'images/vip_banner_icon_9_ac227fd.png' %}"
+                         alt="图文教程">
+                    <p class="num">15000+</p>
+                    <h3>学习用户</h3>
+                </li>
 
-                    </ul>
-                </div>
-            </div>
-            <div class="right layout">
-                <div class="head">讲师排行榜</div>
-                {% for hot_teacher in hot_teachers %}
-                    <dl class="des">
-                        <span class="num fl">{{ forloop.counter }}</span>
-                        <a href="{% url 'org:teacher_detail' hot_teacher.id %}">
-                            <dt>
-                                <img width="50" height="50" class="scrollLoading"
-                                     src="{{ hot_teacher.image.url }}"/>
-                            </dt>
-                        </a>
-                        <dd>
-                            <a href="{% url 'org:teacher_detail' hot_teacher.id %}">
-                                <h1 title="bobby">{{ hot_teacher.name }}</h1>
-                            </a>
-                            <p>工作年限：<span>{{ hot_teacher.work_years }}年</span></p>
-                        </dd>
-                    </dl>
-                {% endfor %}
+                <li class="vip-li">
+                    <img class="pic" src="{% static 'images/vip_banner_icon_11_1ca6d7a.png' %}"
+                         alt="图文教程">
+                    <p class="num">500+</p>
+                    <h3>实战视频</h3>
+                </li>
 
+                <li class="vip-li">
+                    <img class="pic" src="{% static 'images/vip_banner_icon_5_2ab291c.png' %}"
+                         alt="图文教程">
+                    <p class="num">500+</p>
+                    <h3>专业电子书</h3>
+                </li>
+                <li class="vip-li">
+                    <img class="pic" src="{% static 'images/vip_banner_icon_1_38edee1.png' %}"
+                         alt="图文教程">
+                    <p class="num">10</p>
+                    <h3>职业方向</h3>
+                </li>
+            </ul>
 
-            </div>
         </div>
-    </section>
+
+
+    </div>
+    <div class="vip_info">
+    <div class="division_title division_title_main">普通用户与全站通VIP的区别</div>
+    <table style="margin:auto">
+      <tbody>
+        <tr class="tr_one">
+          <td width="10%">特权对比</td>
+          <td width="10%">身份标签</td>
+          <td width="25%">全站视频</td>
+          <td width="15%">有效期限</td>
+          <td width="25%">专属服务</td>
+            <td width="15%">价格</td>
+        </tr>
+        <tr class="bgcolor_white">
+          <td>普通会员</td>
+          <td><div class="error"></div></td>
+          <td><div class="error"></div></td>
+          <td><div class="error"></div></td>
+          <td><div class="error"></div></td>
+            <td>免费</td>
+        </tr>
+        <tr class="bgcolor_white">
+          <td class="showy2 green">年VIP</td>
+          <td class="showy1"><div class="vip vip0"></div></td>
+          <td class="showy1" rowspan="2"><p>手机&nbsp;电脑&nbsp;平板在线观看</p><p>全站观看无任何限制</p></td>
+          <td class="showy2 green">365天</td>
+          <td>热门软件下载 &nbsp; 免费使用</td>
+            <td>59元</td>
+        </tr>
+        <tr class="bgcolor_white">
+          <td class="showy1 red">永久VIP</td>
+          <td class="showy1"><div class="vip vip1"></div></td>
+          <td class="red">永久</td>
+          <td>热门软件下载 &nbsp; 免费使用</td>
+            <td>99元</td>
+        </tr>
+        <tr class="bgcolor_white">
+
+        <td>VIP特点</td>
+          <td class="showy1" colspan="5" style="background: #F0FFF7;color:red">VIP解锁全部资源-有效期限内，无限制观看,绝不二次收费,视频任意设备直接播放均不加密!</td>
+        </tr>
+      </tbody>
+    </table>
+     <div class="question">常见问题</div>
+    </div>
+    <div class="question_div">
+
+        <ul>
+            <li>
+
+            </li>
+        </ul>
+    </div>
+
 {% endblock %}
 {% block custom_js %}
     <script>

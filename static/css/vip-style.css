@@ -1,0 +1,188 @@
+
+
+.vip-title {
+    height: 390px;
+    padding-top: 10px;
+    background: url("/static/images/vip_banner_2_0a5bb4e.jpg") no-repeat center;
+
+    text-align: center;
+    min-width: 1000px;
+}
+
+.vip-title h2 {
+    padding-top: 50px;
+    position: relative;
+    font-size: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+
+    letter-spacing: 1px;
+}
+
+.vip-title .contain ul li img {
+    background: #fff;
+    width: 66px;
+    height: 66px;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.vip-title .contain ul li .num {
+    font-size: 20px;
+    color: #fff;
+    height: 26px;
+    line-height: 26px;
+    margin: 20px 0 10px;
+}
+.vip-li{
+    float: left;
+    padding: 0px 20px 0px 60px;
+}
+.vip-title .contain ul {
+    font-size: 0;
+    width: 805px;
+    margin: 0 auto;
+}
+.vip_info {
+    background: #FFF;
+    width: 100%;
+    text-align:center
+}
+
+.vip-title .contain ul li h3 {
+    font-size: 18px;
+    color: #fff;
+}
+
+.vip-title .desc {
+    padding-top: 20px;
+    width: 640px;
+    margin: 0 auto 50px;
+    font-size: 13px;
+    color: #c1e0ff;
+    line-height: 20px;
+}
+
+.vip_info table {
+    border: 1px solid #eee;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 0;
+    empty-cells: show;
+}
+
+.vip_info tbody {
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-align: left;
+    font-family: "Microsoft YaHei";
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.green {
+    color: #44BC7B !important;
+}
+
+.vip_info tbody .tr_one {
+    height: 40px;
+}
+
+.vip_info tr {
+    height: 70px;
+}
+.tr_one {
+    background-color: #fafafa;
+    color: #666;
+    font-size: 22px;
+}
+
+.tr_one td {
+    font-weight: 400;
+}
+
+.tr_one td {
+    height: 40px;
+}
+.vip_info td {
+    border: 1px solid #eee;
+    text-align: center;
+    border-color: #DEE6EE;
+    vertical-align: middle;
+}
+
+.bgcolor_white {
+    background-color: #fff;
+    font-size: 18px;
+}
+
+.red {
+    color: red;
+}
+
+.red {
+    border: solid 1px #B50000;
+    background-color: #FFEBEB;
+}
+
+.showy2 {
+    background: #F0FFF7;
+}
+
+.vip_info .error {
+    width: 30px;
+    height: 20px;
+    background: url("/static/images/icons.png") no-repeat 0 -28px;
+    margin: 0 auto;
+}
+.vip {
+    width: 40px;
+    height: 30px;
+    margin: 0 auto;
+}
+
+.vip1 {
+    background: transparent url("/static/images/yvip.png") no-repeat;
+}
+
+
+.vip0 {
+    background: transparent url("/static/images/gvip.png") no-repeat scroll 0px -0px;
+}
+.division_title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #fff none repeat scroll 0 0;
+    border-image: none;
+    color: #068ee6;
+    font-size: 50px;
+    height: 45px;
+    line-height: 45px;
+    position: relative;
+    width: 100%;
+    text-indent: 20px;
+    border-width: 0px;
+}
+.question{
+    font-size: 40px;
+    margin-top: 40px;
+    color: #666666;
+}
+
+.question_div{
+    text-align: center;
+    width: 80%;
+    color: #666666;
+    height: 1000px;
+}
+
+
+

@@ -63,7 +63,7 @@
                     <em></em>
                 </div>
                 <div class="static-item static-time">
-                    <span class="meta-value">{{ course.learn_times }}</span>
+                    <span class="meta-value"><strong>{{ course.learn_times }} 小时</strong></span>
                     <span class="meta">时长</span>
                     <em></em>
                 </div>
@@ -110,7 +110,7 @@
                                         <div class="tit">
                                             <span target="_blank">{{ comment.user.nick_name }}</span>
                                             {% if comment.user.is_VIP is  True %}
-                                                <img  src="/static/images/vip.jpg" width="16"height="16"/>{% else %}<img  src="/static/images/huiyuan.gif" width="16"height="16"/>
+                                                &nbsp;<img  src="/static/images/vip.jpg" width="17"height="17"/>{% else %}<img  src="/static/images/huiyuan.gif" width="16"height="16"/>
                                                 {% endif %}
                                         </div>
                                         <p class="cnt">{{ comment.comments }}</p>
@@ -156,7 +156,7 @@
                                     {% endif %}
                         </div>
                         <div class="box mb40">
-                            <h4>视频提供者</h4>
+                            <h4>视频上传者</h4>
                             <div class="teacher-info">
                                 <a  target="_blank">
                                     <img src='{{ course.teacher.image.url }}' width='80' height='80'/>
@@ -164,17 +164,14 @@
                                 <span class="tit">
           <a  target="_blank">{{ course.teacher.name }}</a>
         </span>
-                                <span class="job">{{ course.teacher.work_position }}</span>
+
                             </div>
                             <div class="course-info-tip">
                                 <dl class="first">
-                                    <dt>作者评论</dt>
+                                    <dt>课程须知</dt>
                                     <dd class="autowrap">{{ course.youneed_know }}</dd>
                                 </dl>
-                                <dl>
-                                    <dt>老师告诉你能学到什么？</dt>
-                                    <dd class="autowrap">{{ course.teacher_tell }}</dd>
-                                </dl>
+
                             </div>
                         </div>
 

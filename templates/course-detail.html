@@ -40,7 +40,7 @@
                             </div>
                             <ul class="parameter">
                                 <li><span
-                                        class="pram word3"></span><span><h3>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：{{ course.learn_times }}分钟</h3></span>
+                                        class="pram word3"></span><span><h3>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：{{ course.learn_times }}小时</h3></span>
                                 </li>
                                 <li><span
                                         class="pram word3"></span><span><h3>章&nbsp;节&nbsp;数： {{ course.lesson_nums }}</h3></span>
@@ -117,7 +117,7 @@
                     <div class="head">
                         <ul class="tab_header">
                             <li class="active">章节目录</li>
-                            <li class=""><a href="{% url 'course:detail_comments' course.id%}">学员评论</a></li>
+                            <li class=""><a href="{% url 'course:detail_comments' course.id%}">学员评论 ({{ comments_count }})</a></li>
                         </ul>
 
                     </div>

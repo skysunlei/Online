@@ -274,9 +274,82 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/index-style.css' %}">
 {% endblock %}
 {% block content %}
+    <div class="index_title">
+        <table>
+            <tbody>
+            <tr>
+                <td class="index_title_td">
+                    <div class="index_title1">
+                        <a href="{% url 'org:home' web.id %}">
+                            <img class="index_title_image" src="{% static 'images/gengxin.png' %}">
+                        </a>
+                        <dl class="index_dl">
+
+                            <dd class="index_dd"><h1 class="index_h1">每日更新</h1></dd>
+                            <dd class="index_dd"><h1 class="index_h1">在线学习</h1></dd>
+
+
+                        </dl>
+                    </div>
+
+                </td>
+                <td class="index_title_td">
+                    <div class="index_title2">
+                        <a href="{% url 'org:home' web.id %}">
+                            <img class="index_title_image" src="{% static 'images/fankui.png' %}">
+                        </a>
+
+                        <dl class="index_dl">
+
+                            <dd class="index_dd"><h1 class="index_h1">问题反馈</h1></dd>
+                            <dd class="index_dd"><h1 class="index_h2">我们及时解决</h1></dd>
+
+
+                        </dl>
+                    </div>
+                </td>
+                <td class="index_title_td">
+                    <div class="index_title3">
+                        <a href="{% url 'org:home' web.id %}">
+                            <img class="index_title_image" src="{% static 'images/qq.png' %}">
+                        </a>
+                        <dl class="index_dl">
+
+                            <dd class="index_dd"><h1 class="index_h1">QQ在线</h1></dd>
+                            <dd class="index_dd"><h1 class="index_h2">点击图标-问题随时解答</h1></dd>
+
+
+                        </dl>
+                    </div>
+                </td>
+                <td class="index_title_td">
+                    <div class="index_title4">
+                        <div>
+                            <a href="{% url 'org:home' web.id %}">
+                                <img class="index_title_image" src="{% static 'images/dianzishu.png' %}">
+                            </a>
+                            <dl class="index_dl">
+
+                            <dd class="index_dd"><h1 class="index_h1" >电子书</h1></dd>
+                            <dd class="index_dd"><h1 class="index_h2">海量电子书下载</h1></dd>
+
+
+                        </dl>
+                        </div>
+
+
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
 
     <div class="yuyan_title">
         <h4>编程开发</h4>
+
 
     </div>
 
@@ -540,7 +613,7 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' ps.id %}" class="title_name">{{ ps.name }}</a>
+                            <a href="{% url 'org:home' ps.id %}" class="title_name">设计与影音</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ ps.course_nums }}</em>
 
@@ -648,7 +721,7 @@
     </div>
 
     <div class="yuyan_title">
-        <h4>设计与影音</h4>
+        <h4>交流讨论</h4>
 
     </div>
     <div class="index-content">
@@ -663,7 +736,7 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="#" class="title_name">{{ web.name }}</a>
+                            <a href="#" class="title_name">一起分享</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ web.course_nums }}</em>
 
@@ -682,7 +755,7 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="#" class="title_name">{{ java.name }}</a>
+                            <a href="#" class="title_name">网站公告</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ java.course_nums }}</em>
 
@@ -701,7 +774,7 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="#" class="title_name">{{ python.name }}</a>
+                            <a href="#" class="title_name">电子书</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ python.course_nums }}</em>
 
@@ -720,7 +793,7 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="#" class="title_name">{{ mstudy.name }}</a>
+                            <a href="#" class="title_name">反馈和建议</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ mstudy.course_nums }}</em>
 

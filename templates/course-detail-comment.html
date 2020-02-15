@@ -12,6 +12,7 @@
     </section>
 {% endblock %}
 {% block custom_css %}
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/muke/course/course-comment.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/muke/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/muke/common-less.css' %}">
@@ -54,14 +55,14 @@
                             <div class="btns">
                                 <div class="btn colectgroupbtn" id="jsLeftBtn">
                                     {% if has_fav_course %}
-                                        已收藏
+                                        <strong>已收藏</strong>
                                     {% else %}
-                                        收藏
+                                        <strong>收藏</strong>
                                     {% endif %}
                                 </div>
                                 {#                                <div class="buy btn" href="{% url 'course:lesson' course.id %}"><a style="color: white" href="{% url 'course:lesson' course.id %}">开始学习</a></div>#}
                                 <a href="{% url 'course:lesson' course.id %}">
-                                    <div class="buy btn">开始学习</div>
+                                    <div class="buy btn"><strong>开始学习</strong></div>
                                 </a>
                             </div>
                         </div>
@@ -133,9 +134,23 @@
                                     <div class="bd">
                                         <div class="tit">
                                             <span target="_blank">{{ comment.user.nick_name }}</span>
-                                            {% if comment.user.is_VIP is  True %}
-                                                <img  src="/static/images/vip.jpg" width="17"height="17"/>{% else %}<img  src="/static/images/huiyuan.gif" width="16"height="16"/>
-                                                {% endif %}
+{#                                            {% if comment.user.is_VIP is  True %}#}
+{#                                                <img  src="/static/images/vip.jpg" width="17"height="17"/>#}
+{#                                            {% else %}<img  src="/static/images/huiyuan.gif" width="16"height="16"/>#}
+{#                                                {% endif %}#}
+
+                                        {% if comment.user.is_VIP is  True %}
+                                                &nbsp;<img  src="/static/images/yvip.png" width="17"height="17"/>
+                                                {% elif comment.user.is_nian_VIP is True %}
+                                                <img  src="/static/images/gvip.png" width="17"height="17"/>{% else %}<img  src="/static/images/huiyuan.gif" width="16"height="16"/>
+
+                                            {% endif %}
+
+
+
+
+
+
                                         </div>
                                         <p class="cnt">{{ comment.comments }}</p>
                                         <div class="footer clearfix">

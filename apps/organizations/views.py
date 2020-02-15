@@ -1,12 +1,15 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic.base import View
 # Create your views here.
-from apps.operations.models import UserFavorite
+from apps.operations.models import UserFavorite, UserAsk
 from apps.organizations.models import CourseOrg, City, Teacher
 
 from django.http import JsonResponse
 from apps.organizations.forms import AddAskForm
-from pure_pagination import Paginator,  PageNotAnInteger
+from pure_pagination import Paginator, PageNotAnInteger
+
+from apps.users.models import UserProfile
 
 
 class TeacherDetailView(View):
@@ -162,7 +165,12 @@ class OrgHomeView(View):
         })
 
 
-class AddAskView(View):
+class AddAskView(LoginRequiredMixin, View):
+    login_url = "/login/"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'add-ask-view.html')
+
     """
     处理用户的咨询
     """
@@ -170,10 +178,32 @@ class AddAskView(View):
     def post(self, request, *args, **kwargs):
         userask_form = AddAskForm(request.POST)
         if userask_form.is_valid():
-            userask_form.save(commit=True)
-            return JsonResponse({
-                "status": "success"
-            })
+            # userask_form.save(commit=True)
+            ask_numb = request.user.ask_numb
+            if ask_numb > 1:
+
+                userask = UserAsk(name=request.user.username)
+                userask.mobile = userask_form.cleaned_data.get("mobile")
+                userask.course_name = userask_form.cleaned_data.get("course_name")
+                userask.save()
+
+                # user = UserProfile(username=request.user.username)
+                # i = user.ask_numb
+                # user.ask_numb = i - 1
+                # print(i)
+                # user.save()
+                i= request.user.ask_numb
+                a = i-1
+                request.user.ask_numb = a
+                request.user.save()
+                return JsonResponse({
+                    "status": "success"
+                })
+            else:
+                return JsonResponse({
+                    "status": "fail",
+                    "msg": "您的账号出现异常，请联系管理员"
+                })
         else:
             return JsonResponse({
                 "status": "fail",

@@ -2320,3 +2320,8 @@ fieldset[disabled] .btn {
 .icon-set_key:before {
     content: "\e922";
 }
+
+.vip-a{
+    font-size: 12px;
+    color: #00ad29 !important;
+}

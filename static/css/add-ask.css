@@ -1,0 +1,56 @@
+.ask {
+    width: 950px;
+    height: 1000px;
+    margin: 10px auto;
+
+}
+
+.ask h2 {
+    font-size: 40px;
+    padding-top: 10px;
+}
+
+.textarea1 {
+    resize: none;
+    font-size: 17px;
+    margin: 10px 170px;
+    width: 610px;
+    height: 200px;
+}
+
+.form_p {
+    margin: 5px 170px;
+    font-size: 20px;
+    color: #aa1111;
+}
+
+.form_p2 {
+    margin: 15px 170px 5px 170px;
+    font-size: 20px;
+    color: #aa1111;
+}
+
+.form_email {
+    width: 200px;
+    height: 30px;
+    margin: 10px 170px;
+}
+
+.p4{
+    font-size: 30px;
+}
+
+.btn2 {
+    display: block;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #00a0dc;
+    width: 200px;
+    height: 80px;
+
+    border-radius: 9px;
+    font-size: 35px;
+    color: #FFFFFF;
+
+}

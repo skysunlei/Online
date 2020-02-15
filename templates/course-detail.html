@@ -54,14 +54,14 @@
                             <div class="btns">
                                 <div class="btn colectgroupbtn" id="jsLeftBtn">
                                     {% if has_fav_course %}
-                                        已收藏
+                                        <strong>已收藏</strong>
                                     {% else %}
-                                        收藏
+                                        <strong>收藏</strong>
                                     {% endif %}
                                 </div>
                                 {#                                <div class="buy btn" href="{% url 'course:lesson' course.id %}"><a style="color: white" href="{% url 'course:lesson' course.id %}">开始学习</a></div>#}
                                 <a href="{% url 'course:lesson' course.id %}">
-                                    <div class="buy btn">开始学习</div>
+                                    <div class="buy btn"><strong>开始学习</strong></div>
                                 </a>
                             </div>
                         </div>

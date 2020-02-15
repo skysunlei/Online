@@ -171,18 +171,29 @@
     text-indent: 20px;
     border-width: 0px;
 }
+
 .question{
     font-size: 40px;
-    margin-top: 40px;
-    color: #666666;
+    margin-top: 30px;
+}
+.questions-p{
+    font-size: 20px;
+    margin-top: 30px;
 }
 
-.question_div{
-    text-align: center;
-    width: 80%;
-    color: #666666;
-    height: 1000px;
+.questions-b{
+    line-height:35px;
+    margin-top: 10px;
+    font-size: 20px;
 }
+.questions{
+    width: 950px;
+    height: 1000px;
+    margin: 0px auto;
+}
+
+
+
 
 
 

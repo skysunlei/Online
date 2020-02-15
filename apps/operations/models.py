@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 
 from apps.users.models import BaseModel
 from apps.courses.models import Course
+
 # Create your models here.
 
 
@@ -23,10 +24,11 @@ class Banner(BaseModel):
     def __str__(self):
         return self.title
 
+
 class UserAsk(BaseModel):
-    name = models.CharField(max_length=20, verbose_name="姓名")
-    mobile = models.CharField(max_length=11, verbose_name="手机")
-    course_name = models.CharField(max_length=50, verbose_name="课程名")
+    name = models.CharField(max_length=50, verbose_name="姓名")
+    mobile = models.CharField(max_length=30, verbose_name="邮箱")
+    course_name = models.CharField(max_length=1000, verbose_name="反馈内容")
 
     class Meta:
         verbose_name = "用户咨询"

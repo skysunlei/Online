@@ -4,8 +4,8 @@ from apps.operations.models import UserAsk
 
 
 class AddAskForm(forms.ModelForm):
-    mobile = forms.CharField(max_length=11, min_length=11, required=True)
+    mobile = forms.CharField(max_length=30, min_length=8, required=True)
 
     class Meta:
         model = UserAsk
-        fields = ["name", "mobile", "course_name"]
+        fields = ["mobile", "course_name"]

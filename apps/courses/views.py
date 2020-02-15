@@ -99,28 +99,47 @@ class CourseCommentsView(LoginRequiredMixin, View):
         related_courses = [user_course.course for user_course in all_courses if user_course.course.id != course.id]
 
         is_VIP = request.user.is_VIP
+        is_nianVIP = request.user.is_nian_VIP
 
         if is_VIP is True:
             # 课程资源下载
             course_resources = CourseResource.objects.filter(course=course)
             user_is_vip = "true"
+            user_is_nianVIP = "flase"
             return render(request, "course-comment.html", {
                 "course": course,
                 "course_resources": course_resources,
                 "related_courses": related_courses,
                 "user_is_vip": user_is_vip,
                 "comments": comments,
+                "user_is_nianVIP": user_is_nianVIP
 
             })
 
         else:
+            if is_nianVIP is True:
+                course_resources = CourseResource.objects.filter(course=course)
+                user_is_nianVIP = "true"
+                user_is_vip = "false"
+                return render(request, "course-comment.html", {
+                    "course": course,
+                    "course_resources": course_resources,
+                    "related_courses": related_courses,
+                    "user_is_vip": user_is_vip,
+                    "user_is_nianVIP": user_is_nianVIP,
+                    "comments": comments,
+
+                })
+
             user_is_vip = "false"
+            user_is_nianVIP = "flase"
             # 课程资源下载
             return render(request, "course-comment.html", {
                 "course": course,
                 "related_courses": related_courses,
                 "user_is_vip": user_is_vip,
                 "comments": comments,
+                "user_is_nianVIP": user_is_nianVIP
 
             })
 
@@ -159,27 +178,47 @@ class CourseLessonView(LoginRequiredMixin, View):
         comments = CourseComments.objects.filter(course=course)
         comments_count = comments.count()
         is_VIP = request.user.is_VIP
+        is_nianVIP = request.user.is_nian_VIP
 
         if is_VIP is True:
             course_resources = CourseResource.objects.filter(course=course)
             user_is_vip = "true"
+            user_is_nianVIP = "flase"
             return render(request, "course-video.html", {
                 "course": course,
                 "course_resources": course_resources,
                 "related_courses": related_courses,
                 "user_is_vip": user_is_vip,
-                "comments_count": comments_count
+                "comments_count": comments_count,
+                "user_is_nianVIP": user_is_nianVIP
 
             })
 
+
         else:
+            if is_nianVIP is True:
+                course_resources = CourseResource.objects.filter(course=course)
+                user_is_nianVIP = "true"
+                user_is_vip = "false"
+                return render(request, "course-video.html", {
+                    "course": course,
+                    "course_resources": course_resources,
+                    "related_courses": related_courses,
+                    "user_is_vip": user_is_vip,
+                    "comments_count": comments_count,
+                    "user_is_nianVIP": user_is_nianVIP
+
+                })
+
             user_is_vip = "false"
+            user_is_nianVIP = "flase"
             # 课程资源下载
             return render(request, "course-video.html", {
                 "course": course,
                 "related_courses": related_courses,
                 "user_is_vip": user_is_vip,
-                "comments_count": comments_count
+                "comments_count": comments_count,
+                "user_is_nianVIP": user_is_nianVIP
 
             })
 

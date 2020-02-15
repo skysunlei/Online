@@ -26,7 +26,9 @@ class UserProfile(AbstractUser):
     address = models.CharField(max_length=100, verbose_name="地址", default="")
     mobile = models.CharField(max_length=11, verbose_name="手机号码")
     is_VIP = models.BooleanField(default=False, verbose_name="是否是VIP")
-    image = models.ImageField(upload_to="head_image/%Y/%m", default="head_image/2019/12/default_middile_1.png",
+    is_nian_VIP = models.BooleanField(default=False, verbose_name="是否是年VIP")
+    ask_numb = models.IntegerField(default=20, verbose_name="访问次数限制")
+    image = models.ImageField(upload_to="head_image/%Y/%m", default="head_image/2019/12/touxiang.gif",
                               null=True, blank=True, verbose_name="用户头像")
 
     class Meta:

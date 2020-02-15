@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
+{% endblock %}
+{% block content %}
+    {#    <div class="notice-div">#}
+    {#        <div class="notice_div">#}
+    {#            <img src="{% static 'images/info.gif' %}" class="notice_image">#}
+    {#           <div>#}
+    {#               <p>sdafdsf</p>#}
+    {#           </div>#}
+    {##}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+    <div class="notice-div">
+         <div class="notice_div">
+        <div class="testdiv">
+            <div class="testTXT">
+                <span class="notice-span">抱歉，您尚无权限访问此版块！</span>
+                 <a href="{% url 'index' %}">[ 点击这里返回首页 ]</a>
+
+            </div>
+
+
+        </div>
+             </div>
+    </div>
+{% endblock %}

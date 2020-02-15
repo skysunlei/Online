@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add-ask.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="ask">
+        <h2>意见反馈</h2>
+
+
+        <form class="rightform" id="jsStayForm">
+            <p class="form_p">问题描述：</p>
+            <textarea name="course_name" maxlength="500" id="companyAddress" class="textarea1">
+            </textarea>
+            <p class="form_p2">请填写您的邮箱，管理员会及时联系您的哟！</p>
+            <input class="form_email" type="text" name="mobile" id="companyMobile" placeholder="邮箱"/>
+            <div>
+                <p class="error company-tips p4" id="jsCompanyTips"></p>
+
+                <input class="btn btn-green btn2" id="jsStayBtn" type="button" value="提交">
+
+            </div>
+            {% csrf_token %}
+
+        </form>
+
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+    <script>
+        $(function () {
+            $(document).ready(function () {
+                $('#jsStayBtn').on('click', function () {
+                    $.ajax({
+                        cache: false,
+                        type: "POST",
+                        url: "{% url 'org:add_ask' %}",
+                        data: $('#jsStayForm').serialize(),
+                        async: true,
+                        success: function (data) {
+                            if (data.status == 'success') {
+                                $('#jsStayForm')[0].reset();
+                                $('#jsCompanyTips').html("");
+                                alert("提交成功")
+                            } else if (data.status == 'fail') {
+                                $('#jsCompanyTips').html(data.msg)
+                            }
+                        },
+                    });
+                });
+            });
+        })
+
+    </script>
+{% endblock %}

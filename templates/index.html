@@ -731,17 +731,18 @@
             <tr>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <img class="img_icon" src="{{ web.image.url }}" align="left">
+
+                        <img class="img_icon" src="{% static 'images/common_2_icon.png' %}" align="left">
 
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
                             <a href="#" class="title_name">一起分享</a>
                         </dt>
-                        <em>课程数:&nbsp;&nbsp;{{ web.course_nums }}</em>
+                        <em>已分享数:&nbsp;&nbsp;{{ morelangue.click_nums }}</em>
 
                         <dd>
-                            <a href="#">学习人数：
+                            <a href="#">参与人数：
                                 <span title="">{{ web.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -750,17 +751,18 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <img class="img_icon" src="{{ java.image.url }}" align="left">
+
+                        <img class="img_icon" src="{% static 'images/common_48_icon.png' %}" align="left">
 
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="#" class="title_name">网站公告</a>
+                            <a href="{% url 'notice' %}" class="title_name">网站公告</a>
                         </dt>
-                        <em>课程数:&nbsp;&nbsp;{{ java.course_nums }}</em>
+                        <em></em>
 
                         <dd>
-                            <a href="#">学习人数：
+                            <a href="#">观看人数：
                                 <span title="">{{ java.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -769,18 +771,21 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <img class="img_icon" src="{{ python.image.url }}" align="left">
+                        <a href="{% url 'org:home' ebook.id %}">
+
+                        </a>
+                        <img class="img_icon" src="{{ ebook.image.url }}" align="left">
 
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="#" class="title_name">电子书</a>
+                            <a href="{% url 'org:home' ebook.id %}" class="title_name">电子书</a>
                         </dt>
-                        <em>课程数:&nbsp;&nbsp;{{ python.course_nums }}</em>
+                        <em>课程数:&nbsp;&nbsp;{{ ebook.course_nums }}</em>
 
                         <dd>
-                            <a href="#">学习人数：
-                                <span title="">{{ python.click_nums }}&nbsp;人</span></a>
+                            <a href="{% url 'org:home' ebook.id %}">学习人数：
+                                <span title="">{{ ebook.click_nums }}&nbsp;人</span></a>
                         </dd>
 
                     </dl>
@@ -793,7 +798,7 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="#" class="title_name">反馈和建议</a>
+                            <a href="{% url 'org:add_ask' %}" class="title_name">反馈和建议</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ mstudy.course_nums }}</em>
 

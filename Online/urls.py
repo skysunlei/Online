@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
-from apps.users.views import LoginView, LogoutView, RegisterView
+from apps.users.views import LoginView, LogoutView, RegisterView, NoticeView
 from django.views.static import serve
 from Online.settings import MEDIA_ROOT
 from apps.operations.views import IndexView
@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^ueditor/', include('DjangoUeditor.urls')),
     path('', IndexView.as_view(), name="index"),
     path('login/', LoginView.as_view(), name="login"),
+    path('notice/', NoticeView.as_view(), name="notice"),
     path('register/', RegisterView.as_view(), name="register"),
     path('logout/', LogoutView.as_view(), name="logout"),
     url(r'^captcha/', include('captcha.urls')),

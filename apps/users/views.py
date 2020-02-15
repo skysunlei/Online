@@ -28,6 +28,12 @@ class IndexTestView(View):
         return render(request, "index-test.html")
 
 
+# 网站公告
+class NoticeView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, "notice.html")
+
+
 # 我的消息
 class MyMessageView(LoginRequiredMixin, View):
     login_url = "/login/"

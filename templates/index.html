@@ -737,7 +737,7 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="#" class="title_name">一起分享</a>
+                            <a href="{% url 'op:share' %}" class="title_name">一起分享</a>
                         </dt>
                         <em>已分享数:&nbsp;&nbsp;{{ morelangue.click_nums }}</em>
 
@@ -793,19 +793,19 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <img class="img_icon" src="{{ mstudy.image.url }}" align="left">
+                        <img class="img_icon" src="{% static 'images/common_49_icon.png' %}" align="left">
 
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
                             <a href="{% url 'org:add_ask' %}" class="title_name">反馈和建议</a>
                         </dt>
-                        <em>课程数:&nbsp;&nbsp;{{ mstudy.course_nums }}</em>
-
-                        <dd>
-                            <a href="#">学习人数：
-                                <span title="">{{ mstudy.click_nums }}&nbsp;人</span></a>
-                        </dd>
+{#                        <em>课程数:&nbsp;&nbsp;{{ mstudy.course_nums }}</em>#}
+{##}
+{#                        <dd>#}
+{#                            <a href="#">学习人数：#}
+{#                                <span title="">{{ mstudy.click_nums }}&nbsp;人</span></a>#}
+{#                        </dd>#}
 
                     </dl>
 

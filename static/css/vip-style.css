@@ -1,5 +1,4 @@
 
-
 .vip-title {
     height: 390px;
     padding-top: 10px;
@@ -35,19 +34,22 @@
     line-height: 26px;
     margin: 20px 0 10px;
 }
-.vip-li{
+
+.vip-li {
     float: left;
     padding: 0px 20px 0px 60px;
 }
+
 .vip-title .contain ul {
     font-size: 0;
     width: 805px;
     margin: 0 auto;
 }
+
 .vip_info {
     background: #FFF;
     width: 100%;
-    text-align:center
+    text-align: center
 }
 
 .vip-title .contain ul li h3 {
@@ -95,6 +97,7 @@
 .vip_info tr {
     height: 70px;
 }
+
 .tr_one {
     background-color: #fafafa;
     color: #666;
@@ -108,6 +111,7 @@
 .tr_one td {
     height: 40px;
 }
+
 .vip_info td {
     border: 1px solid #eee;
     text-align: center;
@@ -139,6 +143,7 @@
     background: url("/static/images/icons.png") no-repeat 0 -28px;
     margin: 0 auto;
 }
+
 .vip {
     width: 40px;
     height: 30px;
@@ -149,10 +154,10 @@
     background: transparent url("/static/images/yvip.png") no-repeat;
 }
 
-
 .vip0 {
     background: transparent url("/static/images/gvip.png") no-repeat scroll 0px -0px;
 }
+
 .division_title {
     margin-top: 30px;
     margin-bottom: 20px;
@@ -172,28 +177,190 @@
     border-width: 0px;
 }
 
-.question{
+.question {
     font-size: 40px;
     margin-top: 30px;
 }
-.questions-p{
+
+.questions-p {
     font-size: 20px;
     margin-top: 30px;
 }
 
-.questions-b{
-    line-height:35px;
+.questions-b {
+    line-height: 35px;
     margin-top: 10px;
     font-size: 20px;
 }
-.questions{
+
+.questions {
     width: 950px;
     height: 1000px;
     margin: 0px auto;
 }
 
+.div-h2 {
+    font-size: 80px !important;
+}
+
+.des {
+    padding-top: 20px;
+    width: 640px;
+    margin: 30px auto 50px;
+    font-size: 20px;
+    color: #c1e0ff;
+    line-height: 30px;
+}
+
+.open-vip-div {
+    display: block;
+    width: 950px;
+    height: 200px;
+    margin: 60px auto;
+
+}
+
+.open-vip-a {
+    width: 200px;
+    height: 100px;
+}
+
+.open-vip {
+    color: #FFFFFF;
+    line-height: 20px;
+    display: inline-block;
+    background-color: red;
+    width: 300px;
+    height: 50px;
+    font-size: 40px;
+    margin: 20px 20px 20px 40px;
+    padding-top: 30px;
+    border-radius: 9px;
+}
+
+.button1{
+    width: 230px;
+    height: 65px;
+    background: url("/static/images/WeChat.jpg") no-repeat center;;
+    margin-right: 50px;
+}
+
+.button2{
+    width: 230px;
+    height: 65px;
+    background: url("/static/images/alipay.jpg") no-repeat center;;
+}
+
+.pay{
+    display: block;
+    width: 520px;
+    height: auto;
+    margin: 40px auto;
+}
+
+input:focus
+{
+     outline: 2px solid 	#00CD66;
+}
+
+.pay-image{
+    width: 300px;
+    height: 300px;
+    margin: 40px 0px 10px 120px;
+}
+
+.opening-div{
+    width: 920px;
+    height: auto;
+    margin: 40px auto 10px auto;
+}
+
+.opening{
+    font-size: 40px;
+
+}
+
+.reduce-border-top {
+    width: 1000px;
+    margin: 10px auto 20px auto;
+    border-top: 1px solid #e4e4e4;
+}
+
+.msg-p{
+    margin: 20px 0px 0px 110px;
+    font-size: 20px;
+}
+
+.countor{
+    font-size: 20px;
+}
+
+.pay-submit{
+    display: block;
+    width: 950px;
+    height: auto;
+    margin: 60px auto;
+}
+
+.pay-submit-div{
+    text-align: center;
+    color: #FFFFFF;
+    line-height: 16px;
+    display: inline-block;
+    background-color: #FF7F24;
+    width: 180px;
+    height: 40px;
+    font-size: 25px;
+    margin: 0px 20px 20px 175px;
+    padding-top: 30px;
+    border-radius: 9px;
+}
+
+.pay-submit-msg{
+    color: red;
+    font-size: 20px;
+    margin: 0px 0px 0px 25px;
+}
+
+.notice-div{
+    width: 100%;
+    height: 1000px;
+    margin: 0px 0px;
+    background-color: #FFFFFF;
+}
+
+.notice_div{
+    width: 1000px;
+    height: 60px;
+    margin: 0px auto;
+    background-color: #f2f5f7;
+    /*background: url("/static/images/icons.png") no-repeat 0 -28px;*/
+}
+
+.notice_image{
+    width: 40px;
+    height: 40px;
+    margin: 50px 0px 0px 20px;
+}
 
 
+.testTXT{
+    margin: 100px 0px 0px 40px;
+    height:60px;
+    line-height:30px;
+    padding-left:65px;
+    /*background:url("/static/images/info.gif") no-repeat left center*/
 
+}
+
+.testdiv{
+    width: 1000px;
+    height: 50px;
+}
+
+.notice-span{
+    margin: 0px 0px 0px 0px;
+    font-size: 20px;
+}
 
 

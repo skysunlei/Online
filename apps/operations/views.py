@@ -10,6 +10,10 @@ from django.http import JsonResponse
 
 from apps.organizations.models import CourseOrg, Teacher
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from apps.users.models import UserProfile
+
 
 # 首页开发
 class IndexView(View):
@@ -61,6 +65,20 @@ class IndexView(View):
             "ebook": ebook
 
         })
+
+
+class ShareView(LoginRequiredMixin, View):
+    login_url = "/login/"
+
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_VIP is True:
+            return render(request, "share.html")
+        elif request.user.is_nian_VIP is True:
+            return render(request, "share.html")
+        else:
+            return render(request,"teachers-list.html")
+
 
 
 class CommentView(View):

@@ -11,6 +11,90 @@ from pure_pagination import Paginator, PageNotAnInteger
 
 from apps.users.models import UserProfile
 
+import smtplib
+from email.mime.text import MIMEText
+# email 用于构建邮件内容
+from email.header import Header
+
+import time
+
+
+# 用于构建邮件头
+
+
+class SubmitVIP(LoginRequiredMixin, View):
+    login_url = "/login/"
+
+    def get(self, request, *args, **kwargs):
+        if request.user.ask_numb > 1:
+            # 发信方的信息：发信邮箱，QQ 邮箱授权码
+            from_addr = '4868569@qq.com'
+            password = 'kzwfkfgsdxhgbjbf'
+
+            # 收信方邮箱
+            to_addr = '86568954@qq.com'
+
+            # 发信服务器
+            smtp_server = 'smtp.qq.com'
+
+            # 邮箱正文内容，第一个参数为内容，第二个参数为格式(plain 为纯文本)，第三个参数为编码
+            msg = MIMEText(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())), 'plain', 'utf-8')
+
+            # 邮件头信息
+            msg['From'] = Header(from_addr)
+            msg['To'] = Header(to_addr)
+            msg['Subject'] = Header(request.user.username)
+
+            # 开启发信服务，这里使用的是加密传输
+            server = smtplib.SMTP_SSL()
+            server.connect(smtp_server, 465)
+            # 登录发信邮箱
+            server.login(from_addr, password)
+            # 发送邮件
+            server.sendmail(from_addr, to_addr, msg.as_string())
+            # 关闭服务器
+            server.quit()
+            i = request.user.ask_numb
+            a = i - 1
+            request.user.ask_numb = a
+            request.user.save()
+
+            teacher = Teacher.objects.get(id=int(4))
+            msg = "信息已经提交成功！订单正在审核中，付款后3分钟左右自动开通哟！  有疑问请联系官方邮箱" + teacher.work_company
+            return render(request, "submit-vip.html", {
+                "msg": msg
+            })
+        else:
+            teacher = Teacher.objects.get(id=int(4))
+            msg = "提交失败，您的账户有风险请把您的付款页面截图以及您的账号名发给官方邮箱：" + teacher.work_company + " 管理员会及时处理的哟"
+            return render(request, "submit-vip.html", {
+                "msg": msg
+            })
+
+
+class OpenYVIP(LoginRequiredMixin, View):
+    login_url = "/login/"
+
+    def get(self, request, *args, **kwargs):
+        alipay = Teacher.objects.get(id=int(5))
+        wechat = Teacher.objects.get(id=int(7))
+        return render(request, "open-yvip.html", {
+            "alipay": alipay,
+            "wechat": wechat
+        })
+
+
+class OpenNVIP(LoginRequiredMixin, View):
+    login_url = "/login/"
+
+    def get(self, request, *args, **kwargs):
+        alipay = Teacher.objects.get(id=int(4))
+        wechat = Teacher.objects.get(id=int(6))
+        return render(request, "open-nvip.html", {
+            "alipay": alipay,
+            "wechat": wechat
+        })
+
 
 class TeacherDetailView(View):
     def get(self, request, teacher_id, *args, **kwargs):
@@ -192,8 +276,8 @@ class AddAskView(LoginRequiredMixin, View):
                 # user.ask_numb = i - 1
                 # print(i)
                 # user.save()
-                i= request.user.ask_numb
-                a = i-1
+                i = request.user.ask_numb
+                a = i - 1
                 request.user.ask_numb = a
                 request.user.save()
                 return JsonResponse({

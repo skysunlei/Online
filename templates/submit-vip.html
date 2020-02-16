@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}信息提交页面{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vip-style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="vip-title">
+        {#    <img class="vip-title-image" src="{% static 'images/vip_banner_2_0a5bb4e.jpg' %}">#}
+        <h2>价值够大，价格够低</h2>
+        <p class="desc">在这里，和300多万人一起，养成每天有学习、有进步的习惯，无论你是新入职场，还是在职提升，通过极客学院提供的内容和服务，让职业生涯持续进步，并创造更大价值。</p>
+
+        <div class="contain">
+            <ul class="vip-ul">
+                <li class="vip-li">
+                    <img class="pic" src="{% static 'images/vip_banner_icon_4_2320c7b.png' %}"
+                         alt="教程视频">
+                    <p class="num">1500+</p>
+                    <h3>教程视频</h3>
+                </li>
+
+                <li class="vip-li">
+                    <img class="pic" src="{% static 'images/vip_banner_icon_9_ac227fd.png' %}"
+                         alt="图文教程">
+                    <p class="num">15000+</p>
+                    <h3>学习用户</h3>
+                </li>
+
+                <li class="vip-li">
+                    <img class="pic" src="{% static 'images/vip_banner_icon_11_1ca6d7a.png' %}"
+                         alt="图文教程">
+                    <p class="num">500+</p>
+                    <h3>实战视频</h3>
+                </li>
+
+                <li class="vip-li">
+                    <img class="pic" src="{% static 'images/vip_banner_icon_5_2ab291c.png' %}"
+                         alt="图文教程">
+                    <p class="num">500+</p>
+                    <h3>专业电子书</h3>
+                </li>
+                <li class="vip-li">
+                    <img class="pic" src="{% static 'images/vip_banner_icon_1_38edee1.png' %}"
+                         alt="图文教程">
+                    <p class="num">10</p>
+                    <h3>职业方向</h3>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </div>
+    <div class="notice-div">
+         <div class="notice_div">
+        <div class="testdiv">
+            <div class="testTXT">
+                <span class="notice-span">{{ msg }}</span>
+                 <a href="{% url 'index' %}">[ 点击这里返回首页 ]</a>
+
+            </div>
+
+
+        </div>
+             </div>
+    </div>
+{% endblock %}

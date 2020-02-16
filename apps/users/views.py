@@ -177,6 +177,8 @@ class RegisterView(View):
             user.set_password(password)
             user.mobile = "11111111111"
             user.nick_name = username
+            user.address = "默认"
+            user.gender = "male"
             user.is_VIP = False
             user.save()
             login(request, user)

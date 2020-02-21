@@ -280,7 +280,7 @@
             <tr>
                 <td class="index_title_td">
                     <div class="index_title1">
-                        <a href="{% url 'org:home' web.id %}">
+                        <a target="_blank" href="{% url 'courses:list' %}">
                             <img class="index_title_image" src="{% static 'images/gengxin.png' %}">
                         </a>
                         <dl class="index_dl">
@@ -295,7 +295,7 @@
                 </td>
                 <td class="index_title_td">
                     <div class="index_title2">
-                        <a href="{% url 'org:home' web.id %}">
+                        <a target="_blank" href="{% url 'org:add_ask' %}">
                             <img class="index_title_image" src="{% static 'images/fankui.png' %}">
                         </a>
 
@@ -310,7 +310,7 @@
                 </td>
                 <td class="index_title_td">
                     <div class="index_title3">
-                        <a href="{% url 'org:home' web.id %}">
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes">
                             <img class="index_title_image" src="{% static 'images/qq.png' %}">
                         </a>
                         <dl class="index_dl">
@@ -325,16 +325,16 @@
                 <td class="index_title_td">
                     <div class="index_title4">
                         <div>
-                            <a href="{% url 'org:home' web.id %}">
+                            <a target="_blank" href="{% url 'org:home' web.id %}">
                                 <img class="index_title_image" src="{% static 'images/dianzishu.png' %}">
                             </a>
                             <dl class="index_dl">
 
-                            <dd class="index_dd"><h1 class="index_h1" >电子书</h1></dd>
-                            <dd class="index_dd"><h1 class="index_h2">海量电子书下载</h1></dd>
+                                <dd class="index_dd"><h1 class="index_h1">电子书</h1></dd>
+                                <dd class="index_dd"><h1 class="index_h2">海量电子书下载</h1></dd>
 
 
-                        </dl>
+                            </dl>
                         </div>
 
 
@@ -355,12 +355,12 @@
 
     <div class="index-content">
 
-        <table cellspacing="0" cellpadding="0" class="index_table">
+        <table cellspacing="0" cellpadding="0" class="index_table" border="0">
             <tbody>
-            <tr>
+            <tr class="foot_tr">
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' web.id %}">
+                        <a target="_blank" href="{% url 'org:home' web.id %}">
                             <img class="img_icon" src="{{ web.image.url }}" align="left">
                         </a>
 
@@ -368,12 +368,12 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' web.id %}" class="title_name">{{ web.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' web.id %}" class="title_name">{{ web.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ web.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' web.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' web.id %}">学习人数：
                                 <span title="">{{ web.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -382,7 +382,7 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' java.id %}">
+                        <a target="_blank" href="{% url 'org:home' java.id %}">
                             <img class="img_icon" src="{{ java.image.url }}" align="left">
 
                         </a>
@@ -390,12 +390,13 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' java.id %}" class="title_name">{{ java.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' java.id %}"
+                               class="title_name">{{ java.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ java.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' java.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' java.id %}">学习人数：
                                 <span title="">{{ java.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -404,19 +405,20 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' python.id %}">
+                        <a target="_blank" href="{% url 'org:home' python.id %}">
                             <img class="img_icon" src="{{ python.image.url }}" align="left">
                         </a>
 
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' python.id %}" class="title_name">{{ python.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' python.id %}"
+                               class="title_name">{{ python.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ python.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' python.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' python.id %}">学习人数：
                                 <span title="">{{ python.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -425,7 +427,7 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' python.id %}">
+                        <a target="_blank" href="{% url 'org:home' python.id %}">
                             <img class="img_icon" src="{{ php.image.url }}" align="left">
                         </a>
 
@@ -433,12 +435,12 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' php.id %}" class="title_name">{{ php.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' php.id %}" class="title_name">{{ php.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ php.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' php.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' php.id %}">学习人数：
                                 <span title="">{{ php.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -449,7 +451,7 @@
             <tr>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' bigdata.id %}">
+                        <a target="_blank" href="{% url 'org:home' bigdata.id %}">
                             <img class="img_icon" src="{{ bigdata.image.url }}" align="left">
                         </a>
 
@@ -457,12 +459,13 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' bigdata.id %}" class="title_name">{{ bigdata.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' bigdata.id %}"
+                               class="title_name">{{ bigdata.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ bigdata.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' bigdata.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' bigdata.id %}">学习人数：
                                 <span title="">{{ bigdata.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -471,7 +474,7 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' mstudy.id %}">
+                        <a target="_blank" href="{% url 'org:home' mstudy.id %}">
                             <img class="img_icon" src="{{ mstudy.image.url }}" align="left">
                         </a>
 
@@ -479,12 +482,13 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' mstudy.id %}" class="title_name">{{ mstudy.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' mstudy.id %}"
+                               class="title_name">{{ mstudy.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ mstudy.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' mstudy.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' mstudy.id %}">学习人数：
                                 <span title="">{{ mstudy.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -493,7 +497,7 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' ios.id %}">
+                        <a target="_blank" href="{% url 'org:home' ios.id %}">
                             <img class="img_icon" src="{{ ios.image.url }}" align="left">
                         </a>
 
@@ -501,12 +505,12 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' ios.id %}" class="title_name">{{ ios.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' ios.id %}" class="title_name">{{ ios.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ ios.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' ios.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' ios.id %}">学习人数：
                                 <span title="">{{ ios.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -515,7 +519,7 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' android.id %}">
+                        <a target="_blank" href="{% url 'org:home' android.id %}">
                             <img class="img_icon" src="{{ android.image.url }}" align="left">
                         </a>
 
@@ -523,12 +527,13 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' android.id %}" class="title_name">{{ android.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' android.id %}"
+                               class="title_name">{{ android.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ android.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' android.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' android.id %}">学习人数：
                                 <span title="">{{ android.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -539,7 +544,7 @@
             <tr>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' wechat.id %}">
+                        <a target="_blank" href="{% url 'org:home' wechat.id %}">
                             <img class="img_icon" src="{{ wechat.image.url }}" align="left">
                         </a>
 
@@ -547,12 +552,13 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' wechat.id %}" class="title_name">{{ wechat.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' wechat.id %}"
+                               class="title_name">{{ wechat.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ wechat.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' wechat.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' wechat.id %}">学习人数：
                                 <span title="">{{ wechat.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -561,7 +567,7 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' c.id %}">
+                        <a target="_blank" href="{% url 'org:home' c.id %}">
                             <img class="img_icon" src="{{ c.image.url }}" align="left">
                         </a>
 
@@ -569,12 +575,12 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' c.id %}" class="title_name">{{ c.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' c.id %}" class="title_name">{{ c.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ c.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' c.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' c.id %}">学习人数：
                                 <span title="">{{ c.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -583,7 +589,7 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' net.id %}">
+                        <a target="_blank" href="{% url 'org:home' net.id %}">
                             <img class="img_icon" src="{{ net.image.url }}" align="left">
                         </a>
 
@@ -591,12 +597,12 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' net.id %}" class="title_name">{{ net.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' net.id %}" class="title_name">{{ net.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ net.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' net.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' net.id %}">学习人数：
                                 <span title="">{{ net.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -605,7 +611,7 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' ps.id %}">
+                        <a target="_blank" href="{% url 'org:home' ps.id %}">
                             <img class="img_icon" src="{{ ps.image.url }}" align="left">
                         </a>
 
@@ -613,12 +619,12 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' ps.id %}" class="title_name">设计与影音</a>
+                            <a target="_blank" href="{% url 'org:home' ps.id %}" class="title_name">设计与影音</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ ps.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' ps.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' ps.id %}">学习人数：
                                 <span title="">{{ ps.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -629,7 +635,7 @@
             <tr>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' database.id %}">
+                        <a target="_blank" href="{% url 'org:home' database.id %}">
                             <img class="img_icon" src="{{ database.image.url }}" align="left">
                         </a>
 
@@ -637,12 +643,13 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' database.id %}" class="title_name">{{ database.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' database.id %}"
+                               class="title_name">{{ database.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ database.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' database.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' database.id %}">学习人数：
                                 <span title="">{{ database.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -651,7 +658,7 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' xitong.id %}">
+                        <a target="_blank" href="{% url 'org:home' xitong.id %}">
                             <img class="img_icon" src="{{ xitong.image.url }}" align="left">
                         </a>
 
@@ -659,12 +666,13 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' xitong.id %}" class="title_name">{{ xitong.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' xitong.id %}"
+                               class="title_name">{{ xitong.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ xitong.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' xitong.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' xitong.id %}">学习人数：
                                 <span title="">{{ xitong.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -673,7 +681,7 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' heike.id %}">
+                        <a target="_blank" href="{% url 'org:home' heike.id %}">
                             <img class="img_icon" src="{{ heike.image.url }}" align="left">
                         </a>
 
@@ -681,12 +689,13 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' heike.id %}" class="title_name">{{ heike.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' heike.id %}"
+                               class="title_name">{{ heike.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ heike.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' heike.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' heike.id %}">学习人数：
                                 <span title="">{{ heike.click_nums }}&nbsp;人</span></a>
                         </dd>
                     </dl>
@@ -694,20 +703,22 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' morelangue.id %}">
+                        <a target="_blank" href="{% url 'org:home' morelangue.id %}">
 
+
+                            <img class="img_icon" src="{{ morelangue.image.url }}" align="left">
                         </a>
-                        <img class="img_icon" src="{{ morelangue.image.url }}" align="left">
 
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' morelangue.id %}" class="title_name">{{ morelangue.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' morelangue.id %}"
+                               class="title_name">{{ morelangue.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ morelangue.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' morelangue.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' morelangue.id %}">学习人数：
                                 <span title="">{{ morelangue.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -721,9 +732,114 @@
     </div>
 
     <div class="yuyan_title">
-        <h4>交流讨论</h4>
+        <h4>设计与影音</h4>
 
     </div>
+    <div class="index-content">
+
+        <table cellspacing="0" cellpadding="0" class="index_table">
+            <tbody>
+            <tr>
+                <td class="fl_g" width="24.9%">
+
+                    <div class="td_icon">
+                        <a target="_blank" href="{% url 'org:home' ps.id %}">
+
+                            <img class="img_icon" src="{{ ps.image.url }}" align="left">
+                        </a>
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a target="_blank" href="{% url 'org:home' ps.id %}" class="title_name">{{ ps.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ ps.course_nums }}</em>
+
+                        <dd>
+                            <a target="_blank" href="#">学习人数：
+                                <span title="">{{ ps.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a target="_blank" href="{% url 'org:home' ui.id %}">
+                            <img class="img_icon" src="{{ ui.image.url }}" align="left">
+                        </a>
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a target="_blank" href="{% url 'org:home' ui.id %}"
+                               class="title_name">{{ ui.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ ui.course_nums }}</em>
+
+                        <dd>
+                            <a target="_blank" href="{% url 'org:home' ui.id %}">学习人数：
+                                <span title="">{{ ui.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a target="_blank" href="{% url 'org:home' yingyin.id %}">
+                            <img class="img_icon" src="{{ yingyin.image.url }}" align="left">
+                        </a>
+
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a target="_blank" href="{% url 'org:home' yingyin.id %}"
+                               class="title_name">{{ yingyin.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ yingyin.course_nums }}</em>
+
+                        <dd>
+                            <a target="_blank" href="{% url 'org:home' yingyin.id %}">学习人数：
+                                <span title="">{{ yingyin.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+                <td class="fl_g" width="24.9%">
+                    <div class="td_icon">
+                        <a target="_blank" href="{% url 'org:home' other_design.id %}">
+
+                            <img class="img_icon" src="{{ other_design.image.url }}" align="left">
+                        </a>
+                    </div>
+                    <dl style="margin-left: 56px">
+                        <dt>
+                            <a target="_blank" href="{% url 'org:home' other_design.id %}"
+                               class="title_name">{{ other_design.name }}</a>
+                        </dt>
+                        <em>课程数:&nbsp;&nbsp;{{ other_design.course_nums }}</em>
+
+                        <dd>
+                            <a target="_blank" href="{% url 'org:home' other_design.id %}">学习人数：
+                                <span title="">{{ other_design.click_nums }}&nbsp;人</span></a>
+                        </dd>
+
+                    </dl>
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+    <div class="yuyan_title">
+        <h4>交流讨论</h4>
+    </div>
+
     <div class="index-content">
 
         <table cellspacing="0" cellpadding="0" class="index_table">
@@ -737,12 +853,12 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'op:share' %}" class="title_name">一起分享</a>
+                            <a target="_blank" href="{% url 'op:share' %}" class="title_name">一起分享</a>
                         </dt>
                         <em>已分享数:&nbsp;&nbsp;{{ morelangue.click_nums }}</em>
 
                         <dd>
-                            <a href="#">参与人数：
+                            <a target="_blank" href="#">参与人数：
                                 <span title="">{{ web.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -757,12 +873,12 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'notice' %}" class="title_name">网站公告</a>
+                            <a target="_blank" href="{% url 'notice' %}" class="title_name">网站公告</a>
                         </dt>
                         <em></em>
 
                         <dd>
-                            <a href="#">观看人数：
+                            <a target="_blank" href="#">观看人数：
                                 <span title="">{{ java.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -771,7 +887,7 @@
                 </td>
                 <td class="fl_g" width="24.9%">
                     <div class="td_icon">
-                        <a href="{% url 'org:home' ebook.id %}">
+                        <a target="_blank" href="{% url 'org:home' ebook.id %}">
 
                         </a>
                         <img class="img_icon" src="{{ ebook.image.url }}" align="left">
@@ -779,12 +895,12 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:home' ebook.id %}" class="title_name">电子书</a>
+                            <a target="_blank" href="{% url 'org:home' ebook.id %}" class="title_name">电子书</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ ebook.course_nums }}</em>
 
                         <dd>
-                            <a href="{% url 'org:home' ebook.id %}">学习人数：
+                            <a target="_blank" href="{% url 'org:home' ebook.id %}">学习人数：
                                 <span title="">{{ ebook.click_nums }}&nbsp;人</span></a>
                         </dd>
 
@@ -798,14 +914,9 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a href="{% url 'org:add_ask' %}" class="title_name">反馈和建议</a>
+                            <a target="_blank" href="{% url 'org:add_ask' %}" class="title_name">反馈和建议</a>
                         </dt>
-{#                        <em>课程数:&nbsp;&nbsp;{{ mstudy.course_nums }}</em>#}
-{##}
-{#                        <dd>#}
-{#                            <a href="#">学习人数：#}
-{#                                <span title="">{{ mstudy.click_nums }}&nbsp;人</span></a>#}
-{#                        </dd>#}
+
 
                     </dl>
 
@@ -814,8 +925,8 @@
 
             </tbody>
         </table>
+        <img class="footimg" src="{% static  'images/indexbg.jpg' %}" width="100%" height="auto">
 
     </div>
+
 {% endblock %}
-{#</body>#}
-{#</html>#}

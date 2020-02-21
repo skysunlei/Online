@@ -179,12 +179,13 @@ class OrgCourseView(View):
                 has_fav = True
 
         all_courses = course_org.course_set.all()
+        all_courses = all_courses.order_by("-click_nums")
 
         sort = request.GET.get("sort", "")
         if sort == "students":
             all_courses = all_courses.order_by("-students")
-        elif sort == "hot":
-            all_courses = all_courses.order_by("-click_nums")
+        elif sort == "new":
+            all_courses = all_courses.order_by("-add_time")
         # 对课程进行分页
         try:
             page = request.GET.get('page', 1)

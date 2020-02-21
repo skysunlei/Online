@@ -30,6 +30,7 @@ class UserProfile(AbstractUser):
     ask_numb = models.IntegerField(default=20, verbose_name="访问次数限制")
     image = models.ImageField(upload_to="head_image/%Y/%m", default="head_image/2019/12/touxiang.gif",
                               null=True, blank=True, verbose_name="用户头像")
+    request_numb = models.IntegerField(default=0, verbose_name="课程访问次数限制")
 
     class Meta:
         verbose_name = "用户信息"

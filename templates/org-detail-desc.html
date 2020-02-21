@@ -52,9 +52,9 @@
                 <div class="left layout">
                     <div class="head">
                         <ul class="tab_header">
-                            <li class="{% if sort == '' %}active{% endif %}"><a href="?sort=">最新 </a></li>
-                            <li class="{% if sort == 'hot' %}active{% endif %}"><a href="?sort=hot">最热门</a></li>
-                            <li class="{% if sort == 'students' %}active{% endif %}"><a href="?sort=students">参与人数</a>
+                            <li class="{% if sort == '' %}active{% endif %}"><a href="?sort=">最热门</a></li>
+                            <li class="{% if sort == 'new' %}active{% endif %}"><a href="?sort=new">最新</a></li>
+                            <li class="{% if sort == 'students' %}active{% endif %}"><a href="?sort=students">学习人数</a>
                             </li>
                         </ul>
                     </div>
@@ -64,19 +64,19 @@
 
                                 {% for course in all_courses.object_list %}
                                     <div class="box">
-                                        <a href="{% url 'course:detail' course.id%}">
+                                        <a target="_blank" href="{% url 'course:detail' course.id%}">
                                             <img width="280" height="350" class="scrollLoading"
                                                  src="{{ MEDIA_URL }}{{ course.image }}"/>
                                         </a>
                                         <div class="des">
-                                            <a href="{% url 'course:detail' course.id%}">
+                                            <a target="_blank" href="{% url 'course:detail' course.id%}">
                                                 <h3>{{ course.name }}</h3>
                                             </a>
                                             <span class="fl">时长：<i class="key">{{ course.learn_times }}小时</i></span>
                                             <span class="fr">学习人数：{{ course.students }}&nbsp;&nbsp;</span>
                                         </div>
                                         <div class="bottom">
-                                            <a href="{% url 'course:detail' course.id%}"><span
+                                            <a target="_blank" href="{% url 'course:detail' course.id%}"><span
                                                     class="fl">{{ course.course_org.name }}</span></a>
                                             <span class="star fr  notlogin
                                         " data-favid="15">

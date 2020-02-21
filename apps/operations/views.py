@@ -40,6 +40,9 @@ class IndexView(View):
         ps = CourseOrg.objects.get(id=15)
         morelangue = CourseOrg.objects.get(id=16)
         ebook = CourseOrg.objects.get(id=17)
+        ui = CourseOrg.objects.get(id=19)
+        yingyin = CourseOrg.objects.get(id=21)
+        other_design = CourseOrg.objects.get(id=20)
         return render(request, "index.html", {
             "banners": banners,
             "courses": courses,
@@ -62,7 +65,10 @@ class IndexView(View):
             "heike": heike,
             "ps": ps,
             "morelangue": morelangue,
-            "ebook": ebook
+            "ebook": ebook,
+            "ui": ui,
+            "yingyin": yingyin,
+            "other_design": other_design
 
         })
 
@@ -70,15 +76,13 @@ class IndexView(View):
 class ShareView(LoginRequiredMixin, View):
     login_url = "/login/"
 
-
     def get(self, request, *args, **kwargs):
         if request.user.is_VIP is True:
             return render(request, "share.html")
         elif request.user.is_nian_VIP is True:
             return render(request, "share.html")
         else:
-            return render(request,"teachers-list.html")
-
+            return render(request, "teachers-list.html")
 
 
 class CommentView(View):

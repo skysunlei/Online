@@ -5,8 +5,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.courses.models import Course, CourseTag, CourseResource, Video
 from apps.operations.models import UserFavorite, UserCourse, CourseComments
 import requests
+
+from apps.organizations.models import Teacher
 from apps.users.models import UserProfile
 import re
+import datetime
 
 
 class VideoView(LoginRequiredMixin, View):
@@ -36,6 +39,14 @@ class VideoView(LoginRequiredMixin, View):
 
         # 课程资源下载
         course_resources = CourseResource.objects.filter(course=course)
+        if video.url == "none":
+            teacher = Teacher.objects.get(id=int(4))
+            msg = "提交失败，您的账户有风险请把您的付款页面截图以及您的账号名发给官方邮箱：" + teacher.work_company + " 管理员会及时处理的哟"
+            return render(request, "submit-vip.html", {
+                "msg": msg
+            })
+
+        cookies = Teacher.objects.get(id=int(7))
 
         # 获取视频资源
         agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
@@ -44,8 +55,8 @@ class VideoView(LoginRequiredMixin, View):
             # "Referer": "https://weibo.com/tv/v/Ig92m5Vqy?fid=1034:4438479548141050",
             "Referer": video.url,
             "User-Agent": agent,
-            "Cookie": "SINAGLOBAL=9674389647084.594.1579611267612; SCF=AjGepE5Zsp90usSe0y7VWIzT1ms08Z4xPkisgPWubY6yz5xPhePegZiBlLswHW0kGSbch2cFGVOdhQl0fIOHero.; SUHB=0OMkiw7z2HH7Ki; ALF=1611147342; YF-V5-G0=4e19e5a0c5563f06026c6591dbc8029f; SUB=_2AkMpZGVSf8NxqwJRmfwdz2Lgbo10yA3EieKfOJSJJRMxHRl-yT92qhEetRB6AuRLvUXY1ClSGEp5Tte-m9_VOzlbwJya; SUBP=0033WrSXqPxfM72-Ws9jqgMF55529P9D9WFYOsGaOd4DmT.RdqwG2bDR; login_sid_t=98a544eb9a4c8f6508b3484d7de56e7a; cross_origin_proto=SSL; Ugrow-G0=9ec894e3c5cc0435786b4ee8ec8a55cc; WBStorage=42212210b087ca50|undefined; wb_view_log=2560*14401; _s_tentry=passport.weibo.com; Apache=8735107876994.117.1580788331237; ULV=1580788331249:2:1:1:8735107876994.117.1580788331237:1579611267626"
-
+            # "Cookie": "SINAGLOBAL=9674389647084.594.1579611267612; SCF=AjGepE5Zsp90usSe0y7VWIzT1ms08Z4xPkisgPWubY6yz5xPhePegZiBlLswHW0kGSbch2cFGVOdhQl0fIOHero.; SUHB=0OMkiw7z2HH7Ki; ALF=1611147342; YF-V5-G0=4e19e5a0c5563f06026c6591dbc8029f; SUB=_2AkMpZGVSf8NxqwJRmfwdz2Lgbo10yA3EieKfOJSJJRMxHRl-yT92qhEetRB6AuRLvUXY1ClSGEp5Tte-m9_VOzlbwJya; SUBP=0033WrSXqPxfM72-Ws9jqgMF55529P9D9WFYOsGaOd4DmT.RdqwG2bDR; login_sid_t=98a544eb9a4c8f6508b3484d7de56e7a; cross_origin_proto=SSL; Ugrow-G0=9ec894e3c5cc0435786b4ee8ec8a55cc; WBStorage=42212210b087ca50|undefined; wb_view_log=2560*14401; _s_tentry=passport.weibo.com; Apache=8735107876994.117.1580788331237; ULV=1580788331249:2:1:1:8735107876994.117.1580788331237:1579611267626"
+            "Cookie": cookies.points
         }
         video_url = video.url
         # response = requests.get("https://weibo.com/tv/v/Ig92m5Vqy?fid=1034:4438479548141050", headers=header)
@@ -163,6 +174,9 @@ class CourseLessonView(LoginRequiredMixin, View):
         course = Course.objects.get(id=int(course_id))
         course.click_nums += 1
         course.save()
+        # a=datetime.date.today()
+        # request.user.birthday = a
+        # request.user.save()
         # 查询客户是否已经关联课程
         user_courses = UserCourse.objects.filter(user=request.user, course=course)
         if not user_courses:
@@ -181,9 +195,24 @@ class CourseLessonView(LoginRequiredMixin, View):
         is_nianVIP = request.user.is_nian_VIP
 
         if is_VIP is True:
+            a = datetime.date.today()
+            if request.user.birthday != a:
+                request.user.birthday = a
+                request.user.request_numb = 1
+                request.user.save()
+            else:
+                if request.user.request_numb > 50:
+                    teacher = Teacher.objects.get(id=int(4))
+                    msg = "您的账户有风险请把您的账号名发给官方邮箱：" + teacher.work_company + " 管理员会及时处理的哟!    温馨提示：请不要随意把账号分享给别人，异地登录可能会触发封号系统"
+                    return render(request, "submit-vip.html", {
+                        "msg": msg
+                    })
+
             course_resources = CourseResource.objects.filter(course=course)
             user_is_vip = "true"
             user_is_nianVIP = "flase"
+            request.user.request_numb += 1
+            request.user.save()
             return render(request, "course-video.html", {
                 "course": course,
                 "course_resources": course_resources,
@@ -197,6 +226,20 @@ class CourseLessonView(LoginRequiredMixin, View):
 
         else:
             if is_nianVIP is True:
+
+                a = datetime.date.today()
+                if request.user.birthday != a:
+                    request.user.birthday = a
+                    request.user.request_numb = 1
+                    request.user.save()
+                else:
+                    if request.user.request_numb > 50:
+                        teacher = Teacher.objects.get(id=int(4))
+                        msg = "您的账户有风险请把您的账号名发给官方邮箱：" + teacher.work_company + " 管理员会及时处理的哟!    温馨提示：请不要随意把账号分享给别人，异地登录可能会触发封号系统"
+                        return render(request, "submit-vip.html", {
+                            "msg": msg
+                        })
+
                 course_resources = CourseResource.objects.filter(course=course)
                 user_is_nianVIP = "true"
                 user_is_vip = "false"
@@ -306,8 +349,8 @@ class CourseListView(View):
     def get(self, request, *args, **kwargs):
         """获取课程列表信息"""
         all_courses = Course.objects.order_by("-add_time")
-        # 课程推荐
-        hot_courses = Course.objects.order_by("-click_nums")[:3]
+        # # 课程推荐
+        # hot_courses = Course.objects.order_by("-click_nums")[:3]
         # 对课程排序
         sort = request.GET.get("sort", "")
         if sort == "students":
@@ -328,5 +371,5 @@ class CourseListView(View):
         return render(request, "course-list.html", {
             "all_courses": courses,
             "sort": sort,
-            "hot_courses": hot_courses
+            # "hot_courses": hot_courses
         })

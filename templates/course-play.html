@@ -7,7 +7,6 @@
         <div class="wp">
             <ul class="crumbs">
                 <li><a href="{% url 'index' %}">首页</a>&gt;</li>
-                <li><a href="{% url 'course:list' %}">公开课</a>&gt;</li>
                 <li><a href="{% url 'course:detail' course.id %}">{{ course.name }}</a>&gt;</li>
                 <li>章节信息</li>
             </ul>
@@ -35,7 +34,7 @@
 {% endblock %}
 {% block content %}
    <div id="main">
-   <div style="width:1200px;height:675px; margin-left: 340px">
+   <div style="width:1200px;height:900px; margin: 20px auto">
         <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="1200"
               poster="http://video-js.zencoder.com/oceans-clip.png"
               data-setup="{}">
@@ -163,6 +162,8 @@
 </div>
 </div>
 {% endblock %}
+
+
 
 
 

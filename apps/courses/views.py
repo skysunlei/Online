@@ -40,10 +40,11 @@ class VideoView(LoginRequiredMixin, View):
         # 课程资源下载
         course_resources = CourseResource.objects.filter(course=course)
         if video.url == "none":
-            teacher = Teacher.objects.get(id=int(4))
-            msg = "提交失败，您的账户有风险请把您的付款页面截图以及您的账号名发给官方邮箱：" + teacher.work_company + " 管理员会及时处理的哟"
-            return render(request, "submit-vip.html", {
-                "msg": msg
+
+            return render(request, "course-play-benfeng.html", {
+                "course": course,
+            "course_resources": course_resources,
+            "related_courses": related_courses,
             })
 
         cookies = Teacher.objects.get(id=int(7))

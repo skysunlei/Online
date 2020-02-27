@@ -140,10 +140,42 @@ class ChangePwdView(LoginRequiredMixin, View):
 class UserInfoView(LoginRequiredMixin, View):
     login_url = "/login/"
 
+
     def get(self, request, *args, **kwargs):
         current_page = "info"
+        # current_page = "mycourse"
+        my_courses = UserCourse.objects.filter(user=request.user)
+        course_list = []
+        fav_courses = UserFavorite.objects.filter(user=request.user, fav_type=1)
+        for fav_course in fav_courses:
+            try:
+                course = Course.objects.get(id=fav_course.fav_id)
+                course_list.append(course)
+            except Course.DoesNotExist as e:
+                pass
+
+        messages = UserMessage.objects.filter(user=request.user)
+        for message in messages:
+            message.has_read = True
+            message.save()
+        # 对讲师机构数据进行分页
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+
+        # Provide Paginator with the request object for complete querystring generation
+
+        p = Paginator(messages, per_page=5, request=request)
+
+        messages = p.page(page)
+
         return render(request, "usercenter-info.html", {
-            "current_page": current_page
+            "my_courses": my_courses,
+            "current_page": current_page,
+            "course_list": course_list,
+            "messages": messages
+
         })
 
 

@@ -43,8 +43,14 @@
                                     <dt><img width="80" height="80"
                                              src="{{ user.image.url }}"/></dt>
                                     <dd>
-                                        <h2>{{ user.nick_name }}</h2>
-                                        <p>{{ user.username }}</p>
+                                         <h2>{{ user.nick_name }}</h2>
+{#                                        <p>{{ user.username }}</p>#}
+                                        {% if user.is_VIP is  True %}
+                                                &nbsp;<img  src="/static/images/yvip.png" width="17"height="17"/>
+                                                {% elif user.is_nian_VIP is True %}
+                                                <img  src="/static/images/gvip.png" width="17"height="17"/>{% else %}<strong>普通会员</strong>&nbsp;&nbsp;<a href="{% url 'org:vip' %}" class="vip-a">开通VIP</a>
+
+                                            {% endif %}
                                     </dd>
                                 </dl>
                                 <div class="btn">
@@ -53,7 +59,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{% url 'users:messages' %}">
+                        <a href="{% url 'users:info' %}">
                             <div class="msg-num"><span id="MsgNum">{{ unread_nums }}</span></div>
                         </a>
 
@@ -63,8 +69,8 @@
 
     <div class="middle">
         <div class="wp">
-            <a href="index.html"><img class="fl" src="{% static 'images/logo2.png' %}"/></a>
-            <h1>我的慕学网</h1>
+            <a href="{% url 'index' %}"><img class="fl" src="{% static 'images/logo.png' %}"/></a>
+
         </div>
     </div>
 			</div>
@@ -79,7 +85,7 @@
         <div class="wp">
             <ul  class="crumbs">
                 <li><a href="index.html">首页</a>></li>
-                <li><a href="/user/home/">个人中心</a>></li>
+{#                <li><a href="/user/home/">个人中心</a>></li>#}
                 <li>个人信息</li>
             </ul>
         </div>
@@ -87,73 +93,62 @@
 {% endblock %}
 <section>
 	<div class="wp list personal_list">
-	<div class="left">
-        <ul>
-            <li class="{% if current_page == 'info' %}active2{% endif %}"><a href="{% url 'users:info' %}">个人资料</a></li>
-            <li class="{% if current_page == 'mycourse' %}active2{% endif %}"><a href="{% url 'users:mycourse' %}">我的课程</a></li>
-            <li class="{% if current_page == 'myfavorg' or current_page == 'myfav_course' %}active2{% endif %}"><a href="{% url 'users:myfavorg' %}">我的收藏</a></li>
-            <li class="{% if current_page == 'message' %}active2{% endif %}">
-                <a href="{% url 'users:messages' %}" style="position: relative;">
-                    我的消息
-                </a>
-            </li>
-        </ul>
-	</div>
+
 
     {% block right_form %}
-    <div class="right">
-		<div class="personal_des ">
-			<div class="head" style="border:1px solid #eaeaea;">
-				<h1>个人信息</h1>
-			</div>
-			<div class="inforcon">
-				<div class="left" style="width:242px;">
-                    <iframe id='frameFile' name='frameFile' style='display: none;'></iframe>
-                    <form class="clearfix" id="jsAvatarForm" enctype="multipart/form-data" autocomplete="off" method="post" action="/users/image/upload/" target='frameFile'>
-                        <label class="changearea" for="avatarUp">
-                            <span id="avatardiv" class="pic">
-                                <img width="100" height="100" class="js-img-show" id="avatarShow" src="../media/image/2016/12/default_big_14.png"/>
-                            </span>
-                            <span class="fl upload-inp-box" style="margin-left:70px;">
-                                <span class="button btn-green btn-w100" id="jsAvatarBtn">修改头像</span>
-                                <input type="file" name="image" id="avatarUp" class="js-img-up"/>
-                            </span>
-                        </label>
-                    </form>
-                    <div style="border-top:1px solid #eaeaea;margin-top:30px;">
-                        <a class="button btn-green btn-w100" id="jsUserResetPwd" style="margin:80px auto;width:100px;">修改密码</a>
-                    </div>
-				</div>
-				<form class="perinform" id="jsEditUserForm" autocomplete="off">
-					<ul class="right">
-						<li>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
-                           <input type="text" name="nick_name" id="nick_name" value="django" maxlength="10">
-                            <i class="error-tips"></i>
-                        </li>
-						<li>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：
-                           <input type="text" id="birth_day" name="birday" value="2009年9月2日" readonly="readonly"/>
-                            <i class="error-tips"></i>
-						</li>
-						<li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
-							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="gender" value="male" >男</label>
-							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="female" checked="checked">女</label>
-						</li>
-						<li class="p_infor_city">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
-                            <input type="text" name="address" id="address" placeholder="请输入你的地址" value="我来自火星" maxlength="10">
-						    <i class="error-tips"></i>
-                        </li>
-                        <li>手&nbsp;&nbsp;机&nbsp;&nbsp;号：
-                            <input class="borderno" type="text" name="mobile" readonly="readonly" value="">
-                            <span class="changeemai_btn green changephone-color">[修改]</span>
-                        </li>
-						<li class="button heibtn">
-							<input type="button" id="jsEditUserBtn" value="保存">
-						</li>
-					</ul>
-				</form>
-			</div>
-		</div>
-	</div>
+{#    <div class="right">#}
+{#		<div class="personal_des ">#}
+{#			<div class="head" style="border:1px solid #eaeaea;">#}
+{#				<h1>个人信息</h1>#}
+{#			</div>#}
+{#			<div class="inforcon">#}
+{#				<div class="left" style="width:242px;">#}
+{#                    <iframe id='frameFile' name='frameFile' style='display: none;'></iframe>#}
+{#                    <form class="clearfix" id="jsAvatarForm" enctype="multipart/form-data" autocomplete="off" method="post" action="/users/image/upload/" target='frameFile'>#}
+{#                        <label class="changearea" for="avatarUp">#}
+{#                            <span id="avatardiv" class="pic">#}
+{#                                <img width="100" height="100" class="js-img-show" id="avatarShow" src="../media/image/2016/12/default_big_14.png"/>#}
+{#                            </span>#}
+{#                            <span class="fl upload-inp-box" style="margin-left:70px;">#}
+{#                                <span class="button btn-green btn-w100" id="jsAvatarBtn">修改头像</span>#}
+{#                                <input type="file" name="image" id="avatarUp" class="js-img-up"/>#}
+{#                            </span>#}
+{#                        </label>#}
+{#                    </form>#}
+{#                    <div style="border-top:1px solid #eaeaea;margin-top:30px;">#}
+{#                        <a class="button btn-green btn-w100" id="jsUserResetPwd" style="margin:80px auto;width:100px;">修改密码</a>#}
+{#                    </div>#}
+{#				</div>#}
+{#				<form class="perinform" id="jsEditUserForm" autocomplete="off">#}
+{#					<ul class="right">#}
+{#						<li>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：#}
+{#                           <input type="text" name="nick_name" id="nick_name" value="django" maxlength="10">#}
+{#                            <i class="error-tips"></i>#}
+{#                        </li>#}
+{#						<li>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：#}
+{#                           <input type="text" id="birth_day" name="birday" value="2009年9月2日" readonly="readonly"/>#}
+{#                            <i class="error-tips"></i>#}
+{#						</li>#}
+{#						<li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：#}
+{#							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="gender" value="male" >男</label>#}
+{#							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="female" checked="checked">女</label>#}
+{#						</li>#}
+{#						<li class="p_infor_city">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：#}
+{#                            <input type="text" name="address" id="address" placeholder="请输入你的地址" value="我来自火星" maxlength="10">#}
+{#						    <i class="error-tips"></i>#}
+{#                        </li>#}
+{#                        <li>手&nbsp;&nbsp;机&nbsp;&nbsp;号：#}
+{#                            <input class="borderno" type="text" name="mobile" readonly="readonly" value="">#}
+{#                            <span class="changeemai_btn green changephone-color">[修改]</span>#}
+{#                        </li>#}
+{#						<li class="button heibtn">#}
+{#							<input type="button" id="jsEditUserBtn" value="保存">#}
+{#						</li>#}
+{#					</ul>#}
+{#				</form>#}
+{#			</div>#}
+{#		</div>#}
+{#	</div>#}
     {% endblock %}
 
 	</div>

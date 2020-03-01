@@ -7,6 +7,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>{% block title %}首页 - 慕学在线网{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/Free-Converter.com-logo2-79784041.ico' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -28,7 +29,8 @@
                     {% if request.user.is_authenticated %}
                         <div class="personal">
                             <dl class="user fr">
-                                <dd class="dd_name">{{ user.username }}<img class="down fr" src="/static/images/top_down.png"/></dd>
+                                <dd class="dd_name">{{ user.username }}<img class="down fr"
+                                                                            src="/static/images/top_down.png"/></dd>
                                 <dt><img width="20" height="20" src="{{ user.image.url }}"/>
                                 </dt>
                             </dl>
@@ -38,13 +40,15 @@
                                              src="{{ user.image.url }}"/></dt>
                                     <dd>
                                         <h2>{{ user.nick_name }}</h2>
-{#                                        <p>{{ user.username }}</p>#}
+                                        {#                                        <p>{{ user.username }}</p>#}
                                         {% if user.is_VIP is  True %}
-                                                &nbsp;<img  src="/static/images/yvip.png" width="17"height="17"/>
-                                                {% elif user.is_nian_VIP is True %}
-                                                <img  src="/static/images/gvip.png" width="17"height="17"/>{% else %}<strong>普通会员</strong>&nbsp;&nbsp;<a href="{% url 'org:vip' %}" class="vip-a">开通VIP</a>
+                                            &nbsp;<img src="/static/images/yvip.png" width="17" height="17"/>
+                                        {% elif user.is_nian_VIP is True %}
+                                            <img src="/static/images/gvip.png" width="17" height="17"/>{% else %}
+                                            <strong>普通会员</strong>&nbsp;&nbsp;
+                                            <a href="{% url 'org:vip' %}" class="vip-a">开通VIP</a>
 
-                                            {% endif %}
+                                        {% endif %}
                                     </dd>
                                 </dl>
                                 <div class="btn">
@@ -61,34 +65,19 @@
 
                     {% endif %}
 
-                    {##}
-                    {#                        <a style="color:white" class="fr registerbtn" href="register.html">注册</a>#}
-                    {#                        <a style="color:white" class="fr loginbtn" href="login.html">登录</a>#}
 
 
-                <a href="{%url 'users:info' %}">
-                            <div class="msg-num"><span id="MsgNum">{{ unread_nums }}</span></div>
-                        </a>
+
+                    <a href="{% url 'users:info' %}">
+                        <div class="msg-num"><span id="MsgNum">{{ unread_nums }}</span></div>
+                    </a>
                 </div>
             </div>
 
             <div class="middle">
                 <div class="wp">
-                    <a href="index.html"><img class="fl" src="{% static 'images/logo.png' %}"/></a>
-{#                    <div class="searchbox fr">#}
-{#                        <div class="selectContainer fl">#}
-{#                            <span class="selectOption" id="jsSelectOption" data-value="course">#}
-{#                                最新视频#}
-{#                            </span>#}
-{#                            <ul class="selectMenu" id="jsSelectMenu">#}
-{#                                <li data-value="course">最新视频</li>#}
-{#                                <li data-value="org">免费软件大全</li>#}
-{#                                <li data-value="teacher">电子书</li>#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                        <input id="search_keywords" class="fl" type="text" value="" placeholder="请输入搜索内容"/>#}
-{#                        <img class="search_btn fr" id="jsSearchBtn" src="{% static 'images/search_btn.png' %}"/>#}
-{#                    </div>#}
+                    <a href="{% url 'login' %}"><img class="fl" src="{% static 'images/logo.png' %}"/></a>
+
                 </div>
             </div>
 
@@ -101,13 +90,16 @@
                             </li>
                             <li class="{% if request.path|slice:'7' == '/course' %}active{% endif %}">
                                 <a href="{% url 'courses:list' %}">
-                                    最新视频<img class="hot" src="{% static 'images/nav_hot.png' %}">
+                                    最新视频
                                 </a>
                             </li>
                             <li class="{% if request.path|slice:'8' == '/org/vip' %}active{% endif %}">
-                                <a href="{% url 'org:vip' %}">全站vip</a>
+                                <a href="{% url 'org:vip' %}">全站vip<img class="hot"
+                                                                        src="{% static 'images/nav_hot.png' %}"></a>
                             </li>
-                            <li class="{% if request.path|slice:'13' != '/org/teachers' %}{% if request.path|slice:'4' == '/org' %}{% endif %}{% endif %}"><a href="{% url 'org:home' 17 %}">电子书</a></li>
+                            <li class="
+                                    {% if request.path|slice:'13' != '/org/teachers' %}{% if request.path|slice:'4' == '/org' %}{% endif %}{% endif %}">
+                                <a href="{% url 'org:home' 17 %}">电子书</a></li>
                         </ul>
                     </div>
                 </div>
@@ -130,26 +122,30 @@
         <div class="wp">
             <ul class="cont">
                 <li class="logo"><a href=""><img src="{% static 'images/logo.png' %}"/></a></li>
-{#                <li class="code"><img src="{% static 'images/code.jpg' %}"/>#}
-{#                    <p class="center">扫描关注微信</p></li>#}
-{#                <li class="third"><img class="fl" src="{% static 'images/tell.png' %}"/>#}
-{#                    <p class="tell">33333333</p>#}
-{#                    <p class="time">周一至周日 9:00-18:00</p></li>#}
-            </ul>
+                <li class="code">
 
+                    {#                <li class="third"><img class="fl" src="{% static 'images/tell.png' %}"/>#}
+                    {#                    <p class="tell">33333333</p>#}
+                    {#                    <p class="time">周一至周日 9:00-18:00</p></li>#}
+            </ul>
+            <p class="center" style="color: white">资料公园网-更新最快的IT教程网
+                本站资源源自互联网收集及网友分享-如有侵权请发邮件到itjiaocheng@gmail.com联系删除！</p>
         </div>
-        <p class="line"></p>
-        <div class="wp clear">
-{#            <span class="fl">? 2016 www.projectsedu.com 慕学在线-在线学习交流平台 保留所有权利</span>#}
-{#            <span class="fr">copyright ? 2016 ICP备案证书号：蜀ICP备xxxxx号-1</span>#}
-        </div>
+        {#        <p class="line"></p>#}
+        {#        <div class="wp clear">#}
+        {#            <span class="fl">? 2016 www.projectsedu.com 慕学在线-在线学习交流平台 保留所有权利</span>#}
+        {#            <span class="fr">copyright ? 2016 ICP备案证书号：蜀ICP备xxxxx号-1</span>#}
+        {#        </div>#}
     </div>
 </footer>
 
 <section>
     <ul class="sidebar">
         <li class="qq">
-              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2::52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes"><img border="0"
+                                                                                             src="http://wpa.qq.com/pa?p=2::52"
+                                                                                             alt="点击这里给我发消息"
+                                                                                             title="点击这里给我发消息"/></a>
         </li>
 
         <li class="totop"></li>

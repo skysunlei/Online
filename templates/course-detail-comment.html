@@ -41,12 +41,7 @@
                             </div>
                             <ul class="parameter">
                                 <li><span
-                                        class="pram word3"></span><span><h3>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：{{ course.learn_times }}小时</h3></span>
-                                </li>
-                                <li><span
-                                        class="pram word3"></span><span><h3>章&nbsp;节&nbsp;数： {{ course.lesson_nums }}</h3></span>
-                                </li>
-                                <li><span class="pram word3">课程类别：</span><span title="">{{ course.category }}</span>
+                                        class="pram word3"></span><span><h3>本站教程由会员购买或收集提供,本主题所有言论和图片纯属会员个人意见，与本论坛立场无关.如本教程侵犯到任何版权问题，请立即告知本站，本站将及时予与删除并致以最深的歉意!</h3></span>
                                 </li>
                                 <li><span class="pram word3">上传时间：</span><span title="">{{ course.add_time }}</span>
                                 </li>
@@ -68,45 +63,7 @@
                         </div>
 
                     </div>
-                    {#                    <div class="right">#}
-                    {#                        <div class="head">#}
-                    {#                            <h1>授课机构</h1>#}
-                    {#                            <p>世界名校，课程权威</p>#}
-                    {#                        </div>#}
-                    {#                        <div class="pic">#}
-                    {#                            <a href="{% url 'org:home' course.course_org.id %}">#}
-                    {#                                <img width="150" height="80" src="{{ course.course_org.image.url }}"/>#}
-                    {#                            </a>#}
-                    {#                        </div>#}
-                    {#                        <a href="{% url 'org:home' course.course_org.id %}">#}
-                    {#                            <h2 class="center" title="{{ course.course_org.name }}">{{ course.course_org.name }}</h2>#}
-                    {#                        </a>#}
-                    {#                        <div class="btn  notlogin#}
-                    {#					     " data-favid="14" id="jsRightBtn">#}
-                    {#                            {% if has_fav_org %}#}
-                    {#                                        已收藏#}
-                    {#                                    {% else %}#}
-                    {#                                        收藏#}
-                    {#                                    {% endif %}#}
-                    {#                        </div>#}
-                    {#                        <div class="clear">#}
-                    {#                            <ul>#}
-                    {#                                <li>#}
-                    {#                                    <span>课 &nbsp;程&nbsp; 数：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   {{ course.course_org.course_set.all.count }}</span>#}
-                    {#                                </li>#}
-                    {#                                <li>#}
-                    {#                                    <span>教 &nbsp;师&nbsp; 数：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ course.course_org.teacher_set.all.count }}</span>#}
-                    {#                                </li>#}
-                    {#                                <li>所在地区：&nbsp;&nbsp;{{ course.course_org.address }}</li>#}
-                    {#                                {% if course.course_org.is_gold %}#}
-                    {#                                <li>认&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证&nbsp;:#}
-                    {#                                    &nbsp;&nbsp;#}
-                    {#                                    <img title="金牌机构" , src="{% static 'images/gold.png' %}"/>#}
-                    {#                                </li>#}
-                    {#                                {% endif %}#}
-                    {#                            </ul>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
+
                 </div>
             </div>
         </div>
@@ -134,10 +91,6 @@
                                     <div class="bd">
                                         <div class="tit">
                                             <span target="_blank">{{ comment.user.nick_name }}</span>
-{#                                            {% if comment.user.is_VIP is  True %}#}
-{#                                                <img  src="/static/images/vip.jpg" width="17"height="17"/>#}
-{#                                            {% else %}<img  src="/static/images/huiyuan.gif" width="16"height="16"/>#}
-{#                                                {% endif %}#}
 
                                         {% if comment.user.is_VIP is  True %}
                                                 &nbsp;<img  src="/static/images/yvip.png" width="17"height="17"/>

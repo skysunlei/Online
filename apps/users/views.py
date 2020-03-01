@@ -144,7 +144,7 @@ class UserInfoView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         current_page = "info"
         # current_page = "mycourse"
-        my_courses = UserCourse.objects.filter(user=request.user)
+        my_courses = UserCourse.objects.filter(user=request.user)[:12]
         course_list = []
         fav_courses = UserFavorite.objects.filter(user=request.user, fav_type=1)
         for fav_course in fav_courses:

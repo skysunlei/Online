@@ -4,7 +4,7 @@ body {
     color: #14191e;
 }
 body {
-    overflow-y: scroll;
+    overflow: visible;
 }
 body {
     min-width: 1200px;

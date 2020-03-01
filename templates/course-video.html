@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ course.name }}章节信息2{% endblock %}
+{% block title %}{{ course.name }}具体章节信息{% endblock %}
 {% load staticfiles %}
 
 {% block custom_bread %}
@@ -36,11 +36,11 @@
                         <span class="meta">难度</span>
                         <em></em>
                     </div>
-                    <div class="static-item static-time">
-                        <span class="meta-value"><strong>{{ course.learn_times }} 小时</strong></span>
-                        <span class="meta">时长</span>
-                        <em></em>
-                    </div>
+{#                    <div class="static-item static-time">#}
+{#                        <span class="meta-value"><strong>{{ course.learn_times }} 小时</strong></span>#}
+{#                        <span class="meta">时长</span>#}
+{#                        <em></em>#}
+{#                    </div>#}
                     <div class="static-item">
                         <span class="meta-value"><strong>{{ course.students }}</strong></span>
                         <span class="meta">学习人数</span>

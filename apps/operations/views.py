@@ -43,6 +43,7 @@ class IndexView(View):
         ui = CourseOrg.objects.get(id=19)
         yingyin = CourseOrg.objects.get(id=21)
         other_design = CourseOrg.objects.get(id=20)
+        suanfa = CourseOrg.objects.get(id=22)
         return render(request, "index.html", {
             "banners": banners,
             "courses": courses,
@@ -68,7 +69,8 @@ class IndexView(View):
             "ebook": ebook,
             "ui": ui,
             "yingyin": yingyin,
-            "other_design": other_design
+            "other_design": other_design,
+            "suanfa": suanfa
 
         })
 

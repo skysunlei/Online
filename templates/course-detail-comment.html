@@ -82,7 +82,7 @@
 
                     <div id="course_note">
                         <ul class="mod-post" id="comment-list">
-                            {% for comment in comments %}
+                            {% for comment in detailcomment.object_list %}
                                 <li class="post-row">
                                     <div class="media">
                                         <span target="_blank"><img src='{{ comment.user.image.url }}' width='40'
@@ -115,7 +115,35 @@
 
 
                         </ul>
+
                     </div>
+                <div class="pageturn">
+                                <ul class="pagelist">
+                                    {% if detailcomment.has_previous %}
+                                        <li class="long"><a
+                                                href="?{{ detailcomment.previous_page_number.querystring }}">上一页</a>
+                                        </li>
+                                    {% endif %}
+                                    {% for page in detailcomment.pages %}
+                                        {% if page %}
+                                            {% ifequal page detailcomment.number %}
+                                                <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                                            {% else %}
+                                                <li><a href="?{{ page.querystring }}" class="page3">{{ page }}</a></li>
+                                            {% endifequal %}
+                                        {% else %}
+                                            <li class="none">...</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if detailcomment.has_next %}
+                                        <li class="long"><a
+                                                href="?{{ detailcomment.next_page_number.querystring }}">下一页</a></li>
+                                    {% endif %}
+
+
+                                </ul>
+                            </div>
+
                 </div>
 
 
@@ -140,6 +168,7 @@
                 {#                    </div>#}
                 {#                </div>#}
             </div>
+
         </div>
     </section>
 {% endblock %}

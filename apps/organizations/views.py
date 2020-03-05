@@ -186,6 +186,12 @@ class OrgCourseView(View):
             all_courses = all_courses.order_by("-students")
         elif sort == "new":
             all_courses = all_courses.order_by("-add_time")
+        elif sort == "cj":
+            all_courses = all_courses.filter(degree="cj").order_by("-students")
+        elif sort == "zj":
+            all_courses = all_courses.filter(degree="zj").order_by("-students")
+        elif sort == "gj":
+            all_courses = all_courses.filter(degree="gj").order_by("-students")
         # 对课程进行分页
         try:
             page = request.GET.get('page', 1)

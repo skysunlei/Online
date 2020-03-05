@@ -10,6 +10,22 @@
           <option name="port" value="22" />
         </fileTransfer>
       </webServer>
+      <webServer id="725ddaad-fc41-4a87-85a4-87eb96fb3529" name="hongkang" url="http://103.145.86.149">
+        <fileTransfer host="103.145.86.149" port="2221" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2221" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="bb2cd845-8d09-4498-a648-1fe3bda07976" name="tengxun" url="http://119.28.176.238">
+        <fileTransfer host="119.28.176.238" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

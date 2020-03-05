@@ -199,7 +199,7 @@ class RegisterView(View):
         username = request.POST.get("username")
         password = request.POST.get("password")
         user_is_valid = UserProfile.objects.filter(username=username)
-        print(user_is_valid.count())
+
         if user_is_valid.count() != 0:
             return render(request, "register.html", {
                 "msg": "用户名已存在", "login_form": login_form

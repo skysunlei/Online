@@ -80,7 +80,7 @@
                                     <ul class="video">
                                         {% for video in lesson.video_set.all %}
                                             <li>
-                                                {% if user_is_vip == 'true' %}
+                                                {% if user_is_vip == 'true' or user_is_nianVIP == 'true' %}
 
 {#                                                    background: url("/static/images/vip_banner_2_0a5bb4e.jpg") no-repeat center;#}
 {#                                                    <img src="{% static 'images/videoplay-24.png' %}" width="25px" height="25px" style="">#}
@@ -97,8 +97,8 @@
                                                     <a target="_blank"
                                                        href="{% url 'org:vip' %}"
                                                        class="J-media-item studyvideo">{{ video.name }}&nbsp;&nbsp;
-                                                        （{{ video.learn_times }}分钟）
-                                                        <i class="study-state"></i>
+
+                                                        <i class="study-state" style="text-align: center;top: 38%;"><img src="{% static 'images/videoplay-24.png' %}" width="25px" height="25px" style=""></i>
                                                     </a>
 
                                                 {% endif %}

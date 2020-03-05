@@ -4,7 +4,7 @@ from apps.courses.models import Course, Lesson, Video, CourseResource, CourseTag
 
 
 class CourseAdmin(object):
-    list_display = ['name', 'desc', 'detail', 'degree', 'learn_times', 'students']
+    list_display = ['name',   'degree', 'fav_nums', 'students','click_nums']
     search_fields = ['name', 'desc', 'detail', 'degree', 'students']
     list_filter = ['name', 'teacher__name', 'desc', 'detail', 'degree', 'learn_times', 'students']
     list_editable = ["degree", "desc"]

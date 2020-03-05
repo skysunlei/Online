@@ -12,39 +12,39 @@
     </section>
 {% endblock %}
 {% block content %}
-     <div class="middle companyheader">
-                <div class="wp">
-                    <img class="fl" style="width: 112px;height: 103px" src="{{ MEDIA_URL }}{{ course_org.image }}"/>
-                    <div class="head fl">
-                        <h1>
-                            {{ course_org.name }}
-                            {% if course_org.is_auth %}
+    <div class="middle companyheader">
+        <div class="wp">
+            <img class="fl" style="width: 112px;height: 103px" src="{{ MEDIA_URL }}{{ course_org.image }}"/>
+            <div class="head fl">
+                <h1>
+                    {{ course_org.name }}
+                    {% if course_org.is_auth %}
 
-                                <img src="{% static 'images/authentication.png' %}"/>
+                        <img src="{% static 'images/authentication.png' %}"/>
 
-                            {% endif %}
+                    {% endif %}
 
-                            {% if course_org.is_gold %}
-                                <img src="{% static 'images/gold.png' %}"/>
-                            {% endif %}
-                        </h1>
-                        <p class="fl">
-                            <span class="fl" style="margin-top:8px;color:#848484;">推荐指数： </span>
-                            <span class="precision company-credit" data-star-scope="5.0"></span>
-                            <span class="key">5.0</span>
-                        </p>
-                    </div>
-                    <div class="btn fr collectionbtn  notlogin
-                 " data-favid="22" data-fav-type="1">
-                        {% if has_fav %}
-                            已收藏
-                        {% else %}
-                            收藏
-                        {% endif %}
-                    </div>
-
-                </div>
+                    {% if course_org.is_gold %}
+                        <img src="{% static 'images/gold.png' %}"/>
+                    {% endif %}
+                </h1>
+                <p class="fl">
+                    <span class="fl" style="margin-top:8px;color:#848484;">推荐指数： </span>
+                    <span class="precision company-credit" data-star-scope="5.0"></span>
+                    <span class="key">5.0</span>
+                </p>
             </div>
+            <div class="btn fr collectionbtn  notlogin
+                 " data-favid="22" data-fav-type="1">
+                {% if has_fav %}
+                    已收藏
+                {% else %}
+                    收藏
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
     <section>
 
         <div class="wp">
@@ -55,6 +55,10 @@
                             <li class="{% if sort == '' %}active{% endif %}"><a href="?sort=">最热门</a></li>
                             <li class="{% if sort == 'new' %}active{% endif %}"><a href="?sort=new">最新</a></li>
                             <li class="{% if sort == 'students' %}active{% endif %}"><a href="?sort=students">学习人数</a>
+                            <li class=""><a style="color: #953b39">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>难度</strong></a></li>
+                            <li class="{% if sort == 'cj' %}active{% endif %}"><a href="?sort=cj">入门</a></li>
+                            <li class="{% if sort == 'zj' %}active{% endif %}"><a href="?sort=zj">中级</a></li>
+                            <li class="{% if sort == 'gj' %}active{% endif %}"><a href="?sort=gj">高级</a>
                             </li>
                         </ul>
                     </div>
@@ -64,26 +68,27 @@
 
                                 {% for course in all_courses.object_list %}
                                     <div class="box">
-                                        <a target="_blank" href="{% url 'course:detail' course.id%}">
+                                        <a target="_blank" href="{% url 'course:detail' course.id %}">
                                             <img width="280" height="350" class="scrollLoading"
                                                  src="{{ MEDIA_URL }}{{ course.image }}"/>
                                         </a>
                                         <div class="des">
-                                            <a target="_blank" href="{% url 'course:detail' course.id%}">
+                                            <a target="_blank" href="{% url 'course:detail' course.id %}">
                                                 <h3>{{ course.name }}</h3>
                                             </a>
                                             <span class="fl">难度：<i class="key">{% if course.degree == 'cj' %}
                                                 入门
-                                                {% elif course.degree == 'zj' %}
+                                            {% elif course.degree == 'zj' %}
                                                 中级
-                                                {% elif course.degree == 'gj' %}
+                                            {% elif course.degree == 'gj' %}
                                                 高级
 
                                             {% endif %}</i></span>
-                                            <span class="fr">学习人数：<i class="key" >{{ course.students }}&nbsp;&nbsp;</i></span>
+                                            <span class="fr">学习人数：<i
+                                                    class="key">{{ course.students }}&nbsp;&nbsp;</i></span>
                                         </div>
                                         <div class="bottom">
-                                            <a target="_blank" href="{% url 'course:detail' course.id%}"><span
+                                            <a target="_blank" href="{% url 'course:detail' course.id %}"><span
                                                     class="fl">{{ course.course_org.name }}</span></a>
                                             <span class="star fr  notlogin
                                         " data-favid="15">

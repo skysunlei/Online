@@ -40,11 +40,10 @@ class VideoView(LoginRequiredMixin, View):
         # 课程资源下载
         course_resources = CourseResource.objects.filter(course=course)
         if video.url == "none":
-
             return render(request, "course-play-benfeng.html", {
                 "course": course,
-            "course_resources": course_resources,
-            "related_courses": related_courses,
+                "course_resources": course_resources,
+                "related_courses": related_courses,
             })
 
         cookies = Teacher.objects.get(id=int(7))
@@ -113,6 +112,18 @@ class CourseCommentsView(LoginRequiredMixin, View):
         is_VIP = request.user.is_VIP
         is_nianVIP = request.user.is_nian_VIP
 
+        # 对课程机构数据进行分页
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+
+        # Provide Paginator with the request object for complete querystring generation
+
+        p = Paginator(comments, per_page=9, request=request)
+
+        detailcomment = p.page(page)
+
         if is_VIP is True:
             # 课程资源下载
             course_resources = CourseResource.objects.filter(course=course)
@@ -124,6 +135,7 @@ class CourseCommentsView(LoginRequiredMixin, View):
                 "related_courses": related_courses,
                 "user_is_vip": user_is_vip,
                 "comments": comments,
+                "detailcomment":detailcomment,
                 "user_is_nianVIP": user_is_nianVIP
 
             })
@@ -140,6 +152,7 @@ class CourseCommentsView(LoginRequiredMixin, View):
                     "user_is_vip": user_is_vip,
                     "user_is_nianVIP": user_is_nianVIP,
                     "comments": comments,
+                    "detailcomment": detailcomment,
 
                 })
 
@@ -151,7 +164,8 @@ class CourseCommentsView(LoginRequiredMixin, View):
                 "related_courses": related_courses,
                 "user_is_vip": user_is_vip,
                 "comments": comments,
-                "user_is_nianVIP": user_is_nianVIP
+                "user_is_nianVIP": user_is_nianVIP,
+                "detailcomment": detailcomment,
 
             })
 
@@ -277,6 +291,17 @@ class CourseDetailCommentsView(View):
         course.save()
 
         comments = CourseComments.objects.filter(course=course).order_by("-add_time")
+        # 对课程机构数据进行分页
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+
+        # Provide Paginator with the request object for complete querystring generation
+
+        p = Paginator(comments, per_page=9, request=request)
+
+        detailcomment = p.page(page)
         # 获取收藏状态
         has_fav_course = False
         has_fav_org = False
@@ -290,6 +315,7 @@ class CourseDetailCommentsView(View):
         # related_courses = []
         # if tag:
         #     related_courses = Course.objects.filter(tag=tag).exclude(id=course.id)[:3]
+
         tags = course.coursetag_set.all()
         tag_list = [tag.tag for tag in tags]
 
@@ -297,12 +323,15 @@ class CourseDetailCommentsView(View):
         related_courses = set()
         for course_tag in course_tags:
             related_courses.add(course_tag.course)
+
+
         return render(request, "course-detail-comment.html", {
             "course": course,
             "has_fav_course": has_fav_course,
             "has_fav_org": has_fav_org,
             "related_courses": related_courses,
-            "comments": comments
+            "comments": comments,
+            "detailcomment":detailcomment
         })
 
 
@@ -352,6 +381,9 @@ class CourseListView(View):
         all_courses = Course.objects.order_by("-add_time")
         # # 课程推荐
         # hot_courses = Course.objects.order_by("-click_nums")[:3]
+        keywords = request.GET.get("keywords", "")
+        if keywords:
+            all_courses = all_courses.filter(name__icontains=keywords)
         # 对课程排序
         sort = request.GET.get("sort", "")
         if sort == "students":
@@ -373,4 +405,5 @@ class CourseListView(View):
             "all_courses": courses,
             "sort": sort,
             # "hot_courses": hot_courses
+            "keywords": keywords
         })

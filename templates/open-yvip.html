@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block title %}年vip开通页面{% endblock %}
+{% block title %}永久vip开通页面{% endblock %}
 
 {% block custom_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/vip-style.css' %}">
@@ -59,7 +59,11 @@
 
     </div>
 
-    <span class="countor">您正在为账号：{{ request.user.username }}开通永久VIP</span>
+    <span class="countor">您正在为账号：{{ request.user.username }}开通永久VIP</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </div>
+    <div class="opening-div">
+    <span style="text-align: center;font-size: 16px">邀请码(可以为空):</span> <input type="text" style="height: 29px;width: 60px;border-radius: 9px;text-align: center;" >
     </div>
 
 
@@ -67,7 +71,8 @@
     <div class="pay">
 
 
-        <input type="button" autofocus="autofocus" onclick="changeSrc()" value="" class="button1">
+        <input type="button" autofocus="autofocus"  onclick="changeSrc()" value="" class="button1">
+
 
         <input type="button" onclick="changeSrc2()" value="" class="button2">
         <div class="pay-image-div">

@@ -6,7 +6,7 @@
         <div class="wp">
             <ul class="crumbs">
                 <li><a href="{% url 'index' %}">首页</a>></li>
-                <li>公开课</li>
+                <li>最新课程</li>
             </ul>
         </div>
     </section>
@@ -19,9 +19,9 @@
                     <div class="head">
                         <ul class="tab_header">
                             <li class="{% if sort == '' %}active{% endif %}"><a href="?sort=">最新 </a></li>
-                            <li class="{% if sort == 'hot' %}active{% endif %}"><a href="?sort=hot">最热门</a></li>
-                            <li class="{% if sort == 'students' %}active{% endif %}"><a href="?sort=students">参与人数</a>
-                            </li>
+{#                            <li class="{% if sort == 'hot' %}active{% endif %}"><a href="?sort=hot">最热门</a></li>#}
+{#                            <li class="{% if sort == 'students' %}active{% endif %}"><a href="?sort=students">参与人数</a>#}
+{#                            </li>#}
                         </ul>
                     </div>
                     <div id="inWindow">
@@ -38,15 +38,15 @@
                                             <a href="{% url 'course:detail' course.id%}">
                                                 <h3>{{ course.name }}</h3>
                                             </a>
-                                            <span class="fl">难度：<i class="key">{% if course.degree == 'cj' %}
-                                                入门
-                                                {% elif course.degree == 'zj' %}
-                                                中级
-                                                {% elif course.degree == 'gj' %}
-                                                高级
-
-                                            {% endif %}</i></span>
-                                            <span class="fr">学习人数：{{ course.students }}&nbsp;&nbsp;</span>
+{#                                            <span class="fl">难度：<i class="key">{% if course.degree == 'cj' %}#}
+{#                                                入门#}
+{#                                                {% elif course.degree == 'zj' %}#}
+{#                                                中级#}
+{#                                                {% elif course.degree == 'gj' %}#}
+{#                                                高级#}
+{##}
+{#                                            {% endif %}</i></span>#}
+                                            <span class="fr">上传时间：<i class="key">{{ course.add_time }}&nbsp;&nbsp;</i></span>
                                         </div>
                                         <div class="bottom">
                                             <a href="{% url 'course:detail' course.id%}"><span

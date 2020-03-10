@@ -192,6 +192,8 @@ class OrgCourseView(View):
             all_courses = all_courses.filter(degree="zj").order_by("-students")
         elif sort == "gj":
             all_courses = all_courses.filter(degree="gj").order_by("-students")
+        elif sort == "sz":
+            all_courses = all_courses.filter(category="实战").order_by("-students")
         # 对课程进行分页
         try:
             page = request.GET.get('page', 1)

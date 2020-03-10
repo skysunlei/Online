@@ -55,13 +55,17 @@
     </div>
     <div class="opening-div">
         <p class="opening">支付中心</p>
-         <div class="reduce-border-top">
+        <div class="reduce-border-top">
 
+        </div>
+
+        <span class="countor">您正在为账号：{{ request.user.username }}开通年VIP</span>
     </div>
-
-    <span class="countor">您正在为账号：{{ request.user.username }}开通年VIP</span>
     </div>
-
+    <div class="opening-div">
+        <span style="text-align: center;font-size: 16px">邀请码(可以为空):</span> <input type="text"
+                                                                                  style="height: 29px;width: 60px;border-radius: 9px;text-align: center;">
+    </div>
 
 
     <div class="pay">
@@ -72,14 +76,14 @@
         <input type="button" onclick="changeSrc2()" value="" class="button2">
         <div class="pay-image-div">
             <img id="payImage" src="{{ wechat.image.url }}" class="pay-image">
-            <p id="msg" class="msg-p">请使用微信扫描二维码支付&nbsp;￥69.00 </p>
+            <p id="msg" class="msg-p">请使用微信扫描二维码支付&nbsp;￥79.00 </p>
             <div class="pay-submit">
-            <a href="{% url 'org:submit_vip' %}">
-                <div class="pay-submit-div">提交信息</div>
-            </a>
-               <span  class="pay-submit-msg">支付成功后记得提交信息哟！</span>
+                <a href="{% url 'org:submit_vip' %}">
+                    <div class="pay-submit-div">提交信息</div>
+                </a>
+                <span class="pay-submit-msg">支付成功后记得提交信息哟！</span>
 
-        </div>
+            </div>
 
 
         </div>
@@ -92,11 +96,11 @@
     <script>
         function changeSrc() {
             document.getElementById("payImage").src = "{{ wechat.image.url }}";
-            document.getElementById("msg").textContent = "请使用微信扫描二维码支付 ￥69.00"
+            document.getElementById("msg").textContent = "请使用微信扫描二维码支付 ￥79.00"
         }
         function changeSrc2() {
             document.getElementById("payImage").src = "{{ alipay.image.url }}";
-            document.getElementById("msg").textContent = "请使用支付宝扫描二维码支付 ￥69.00"
+            document.getElementById("msg").textContent = "请使用支付宝扫描二维码支付 ￥79.00"
         }
 
     </script>

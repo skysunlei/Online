@@ -378,7 +378,7 @@ class CourseDetailView(View):
 class CourseListView(View):
     def get(self, request, *args, **kwargs):
         """获取课程列表信息"""
-        all_courses = Course.objects.order_by("-add_time")
+        all_courses = Course.objects.order_by("-add_time")[:27]
         # # 课程推荐
         # hot_courses = Course.objects.order_by("-click_nums")[:3]
         keywords = request.GET.get("keywords", "")

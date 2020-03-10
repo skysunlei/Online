@@ -18,10 +18,10 @@ from apps.users.models import UserProfile
 # 首页开发
 class IndexView(View):
     def get(self, request, *args, **kwargs):
-        banners = Banner.objects.all().order_by("index")
-        courses = Course.objects.filter(is_banner=False)[:8]
-        banner_courses = Course.objects.filter(is_banner=True)
-        course_orgs = CourseOrg.objects.all()[:15]
+        # banners = Banner.objects.all().order_by("index")
+        # courses = Course.objects.filter(is_banner=False)[:8]
+        # banner_courses = Course.objects.filter(is_banner=True)
+        # course_orgs = CourseOrg.objects.all()[:15]
 
         android = CourseOrg.objects.get(id=1)
         web = CourseOrg.objects.get(id=2)
@@ -45,10 +45,10 @@ class IndexView(View):
         other_design = CourseOrg.objects.get(id=20)
         suanfa = CourseOrg.objects.get(id=22)
         return render(request, "index.html", {
-            "banners": banners,
-            "courses": courses,
-            "banner_courses": banner_courses,
-            "course_orgs": course_orgs,
+            # "banners": banners,
+            # "courses": courses,
+            # "banner_courses": banner_courses,
+            # "course_orgs": course_orgs,
 
             "android": android,
             "web": web,

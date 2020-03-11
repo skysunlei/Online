@@ -216,7 +216,7 @@ class CourseLessonView(LoginRequiredMixin, View):
                 request.user.request_numb = 1
                 request.user.save()
             else:
-                if request.user.request_numb > 50:
+                if request.user.request_numb > 20:
                     teacher = Teacher.objects.get(id=int(4))
                     msg = "您的账户有风险请把您的账号名发给官方邮箱：" + teacher.work_company + " 管理员会及时处理的哟!    温馨提示：请不要随意把账号分享给别人，异地登录可能会触发封号系统"
                     return render(request, "submit-vip.html", {
@@ -248,7 +248,7 @@ class CourseLessonView(LoginRequiredMixin, View):
                     request.user.request_numb = 1
                     request.user.save()
                 else:
-                    if request.user.request_numb > 50:
+                    if request.user.request_numb > 20:
                         teacher = Teacher.objects.get(id=int(4))
                         msg = "您的账户有风险请把您的账号名发给官方邮箱：" + teacher.work_company + " 管理员会及时处理的哟!    温馨提示：请不要随意把账号分享给别人，异地登录可能会触发封号系统"
                         return render(request, "submit-vip.html", {

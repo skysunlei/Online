@@ -188,8 +188,9 @@ class LogoutView(View):
 class RegisterView(View):
     def get(self, request, *args, **kwargs):
         login_form = DynamicLoginForm()
+        all_courses = Course.objects.order_by("-add_time")[:3]
         return render(request, "register.html", {
-
+            "all_courses":all_courses,
             "login_form": login_form,
 
         })
@@ -225,11 +226,12 @@ class LoginView(View):
         if request.user.is_authenticated:
             return HttpResponseRedirect(reverse("index"))
         next = request.GET.get("next", "")
-
+        all_courses = Course.objects.order_by("-add_time")[:3]
         dynamicloginform = DynamicLoginForm()
         return render(request, "index-test.html", {
             "next": next,
             "dynamicloginform": dynamicloginform,
+            "all_courses": all_courses,
 
         })
 

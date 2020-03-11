@@ -29,15 +29,16 @@
         <div class="login-box clearfix">
             <div class="hd-login clearfix">
                 <a class="index-logo" href="{% url 'index' %}"></a>
-                <h1>欢迎加入资料共享网</h1>
+                <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎加入资料共享网</h1>
                 <a class="index-font" href="{% url 'index' %}">回到首页</a>
             </div>
             <div class="fl slide">
                 <div class="imgslide">
                     <ul class="imgs">
-                            <li><a href=""><img width="483" height="472" src="/static/images/mysql.jpg" /></a></li>
-                            <li><a href=""><img width="483" height="472" src="/static/images/mysql.jpg" /></a></li>
-                            <li><a href=""><img width="483" height="472" src="/static/images/mysql.jpg" /></a></li>
+
+                        {% for all_course in all_courses %}
+                            <li><a href=""><img width="483" height="472" src="{{ all_course.image.url }}" /></a></li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="unslider-arrow prev"></div>

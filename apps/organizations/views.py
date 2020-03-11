@@ -26,6 +26,11 @@ class SubmitVIP(LoginRequiredMixin, View):
     login_url = "/login/"
 
     def get(self, request, *args, **kwargs):
+        if request.user.is_VIP is True or request.user.is_nian_VIP is True:
+            msg = "提交失败"
+            return render(request, "submit-vip.html", {
+                "msg": msg
+            })
         if request.user.ask_numb > 1:
             # 发信方的信息：发信邮箱，QQ 邮箱授权码
             from_addr = '4868569@qq.com'

@@ -383,7 +383,7 @@ class CourseListView(View):
         # hot_courses = Course.objects.order_by("-click_nums")[:3]
         keywords = request.GET.get("keywords", "")
         if keywords:
-            all_courses = all_courses.filter(name__icontains=keywords)
+            all_courses = Course.objects.filter(name__icontains=keywords)
         # 对课程排序
         sort = request.GET.get("sort", "")
         if sort == "students":

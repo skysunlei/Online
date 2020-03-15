@@ -47,7 +47,41 @@
                                 </li>
 
                             </ul>
-                            <div class="btns">
+                             {% if request.user.is_authenticated %}
+                              <div class="btns">
+                                <div class="btn colectgroupbtn" id="jsLeftBtn">
+                                    {% if has_fav_course %}
+                                        <strong>已收藏</strong>
+                                    {% else %}
+                                        <strong>收藏</strong>
+                                    {% endif %}
+                                </div>
+                                {#                                <div class="buy btn" href="{% url 'course:lesson' course.id %}"><a style="color: white" href="{% url 'course:lesson' course.id %}">开始学习</a></div>#}
+                                {% if course.course_org.name == '免费视频' %}
+                                      <a href="{% url 'course:freelesson' course.id %}">
+                                    <div class="buy btn"><strong>开始学习</strong></div>
+                                </a>
+                                    {% else %}
+                                    <a href="{% url 'course:lesson' course.id %}">
+                                    <div class="buy btn"><strong>开始学习</strong></div>
+                                </a>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                             {% elif course.course_org.name == '免费视频' %}
+
+                                <div class="btns">
+                                <div class="btn colectgroupbtn" id="">
+                                    收藏
+                                </div>
+                                {#                                <div class="buy btn" href="{% url 'course:lesson' course.id %}"><a style="color: white" href="{% url 'course:lesson' course.id %}">开始学习</a></div>#}
+                                <a href="{% url 'course:freelesson' course.id %}">
+                                    <div class="buy btn"><strong>开始学习</strong></div>
+                                </a>
+                            </div>
+                                 {% else %}
+                                  <div class="btns">
                                 <div class="btn colectgroupbtn" id="jsLeftBtn">
                                     {% if has_fav_course %}
                                         <strong>已收藏</strong>
@@ -60,6 +94,10 @@
                                     <div class="buy btn"><strong>开始学习</strong></div>
                                 </a>
                             </div>
+
+
+                        {% endif %}
+
                         </div>
 
                     </div>

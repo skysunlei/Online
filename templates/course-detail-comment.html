@@ -47,20 +47,54 @@
                                 </li>
 
                             </ul>
-                            <div class="btns">
-                                <div class="btn colectgroupbtn" id="jsLeftBtn">
-                                    {% if has_fav_course %}
-                                        <strong>已收藏</strong>
+                            {% if request.user.is_authenticated %}
+                                <div class="btns">
+                                    <div class="btn colectgroupbtn" id="jsLeftBtn">
+                                        {% if has_fav_course %}
+                                            <strong>已收藏</strong>
+                                        {% else %}
+                                            <strong>收藏</strong>
+                                        {% endif %}
+                                    </div>
+                                    {#                                <div class="buy btn" href="{% url 'course:lesson' course.id %}"><a style="color: white" href="{% url 'course:lesson' course.id %}">开始学习</a></div>#}
+                                    {% if course.course_org.name == '免费视频' %}
+                                        <a href="{% url 'course:freelesson' course.id %}">
+                                            <div class="buy btn"><strong>开始学习</strong></div>
+                                        </a>
                                     {% else %}
-                                        <strong>收藏</strong>
+                                        <a href="{% url 'course:lesson' course.id %}">
+                                            <div class="buy btn"><strong>开始学习</strong></div>
+                                        </a>
                                     {% endif %}
                                 </div>
-                                {#                                <div class="buy btn" href="{% url 'course:lesson' course.id %}"><a style="color: white" href="{% url 'course:lesson' course.id %}">开始学习</a></div>#}
-                                <a href="{% url 'course:lesson' course.id %}">
-                                    <div class="buy btn"><strong>开始学习</strong></div>
-                                </a>
-                            </div>
-                        </div>
+                                </div>
+                            {% elif course.course_org.name == '免费视频' %}
+
+                                <div class="btns">
+                                    <div class="btn colectgroupbtn" id="">
+                                        收藏
+                                    </div>
+                                    {#                                <div class="buy btn" href="{% url 'course:lesson' course.id %}"><a style="color: white" href="{% url 'course:lesson' course.id %}">开始学习</a></div>#}
+                                    <a href="{% url 'course:freelesson' course.id %}">
+                                        <div class="buy btn"><strong>开始学习</strong></div>
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="btns">
+                                    <div class="btn colectgroupbtn" id="jsLeftBtn">
+                                        {% if has_fav_course %}
+                                            <strong>已收藏</strong>
+                                        {% else %}
+                                            <strong>收藏</strong>
+                                        {% endif %}
+                                    </div>
+                                    {#                                <div class="buy btn" href="{% url 'course:lesson' course.id %}"><a style="color: white" href="{% url 'course:lesson' course.id %}">开始学习</a></div>#}
+                                    <a href="{% url 'course:lesson' course.id %}">
+                                        <div class="buy btn"><strong>开始学习</strong></div>
+                                    </a>
+                                </div>
+                            {% endif %}
+
 
                     </div>
 
@@ -74,7 +108,7 @@
                 <div class="left layout">
                     <div class="head">
                         <ul class="tab_header">
-                            <li class=""><a href="{% url 'course:detail' course.id%}">章节目录</a></li>
+                            <li class=""><a href="{% url 'course:detail' course.id %}">章节目录</a></li>
                             <li class="active">学员评论</li>
                         </ul>
 
@@ -92,16 +126,13 @@
                                         <div class="tit">
                                             <span target="_blank">{{ comment.user.nick_name }}</span>
 
-                                        {% if comment.user.is_VIP is  True %}
-                                                &nbsp;<img  src="/static/images/yvip.png" width="17"height="17"/>
-                                                {% elif comment.user.is_nian_VIP is True %}
-                                                <img  src="/static/images/gvip.png" width="17"height="17"/>{% else %}<img  src="/static/images/huiyuan.gif" width="16"height="16"/>
+                                            {% if comment.user.is_VIP is  True %}
+                                                &nbsp;<img src="/static/images/yvip.png" width="17" height="17"/>
+                                            {% elif comment.user.is_nian_VIP is True %}
+                                                <img src="/static/images/gvip.png" width="17" height="17"/>{% else %}
+                                                <img src="/static/images/huiyuan.gif" width="16" height="16"/>
 
                                             {% endif %}
-
-
-
-
 
 
                                         </div>
@@ -117,32 +148,32 @@
                         </ul>
 
                     </div>
-                <div class="pageturn">
-                                <ul class="pagelist">
-                                    {% if detailcomment.has_previous %}
-                                        <li class="long"><a
-                                                href="?{{ detailcomment.previous_page_number.querystring }}">上一页</a>
-                                        </li>
-                                    {% endif %}
-                                    {% for page in detailcomment.pages %}
-                                        {% if page %}
-                                            {% ifequal page detailcomment.number %}
-                                                <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
-                                            {% else %}
-                                                <li><a href="?{{ page.querystring }}" class="page3">{{ page }}</a></li>
-                                            {% endifequal %}
-                                        {% else %}
-                                            <li class="none">...</li>
-                                        {% endif %}
-                                    {% endfor %}
-                                    {% if detailcomment.has_next %}
-                                        <li class="long"><a
-                                                href="?{{ detailcomment.next_page_number.querystring }}">下一页</a></li>
-                                    {% endif %}
+                    <div class="pageturn">
+                        <ul class="pagelist">
+                            {% if detailcomment.has_previous %}
+                                <li class="long"><a
+                                        href="?{{ detailcomment.previous_page_number.querystring }}">上一页</a>
+                                </li>
+                            {% endif %}
+                            {% for page in detailcomment.pages %}
+                                {% if page %}
+                                    {% ifequal page detailcomment.number %}
+                                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                                    {% else %}
+                                        <li><a href="?{{ page.querystring }}" class="page3">{{ page }}</a></li>
+                                    {% endifequal %}
+                                {% else %}
+                                    <li class="none">...</li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if detailcomment.has_next %}
+                                <li class="long"><a
+                                        href="?{{ detailcomment.next_page_number.querystring }}">下一页</a></li>
+                            {% endif %}
 
 
-                                </ul>
-                            </div>
+                        </ul>
+                    </div>
 
                 </div>
 

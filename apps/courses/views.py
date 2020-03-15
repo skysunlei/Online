@@ -12,6 +12,54 @@ import re
 import datetime
 
 
+class FreeVideoView(View):
+    def get(self, request, course_id, video_id, *args, **kwargs):
+        """
+        获取课程章节详情
+        """
+        course = Course.objects.get(id=int(course_id))
+        course.click_nums += 1
+        course.save()
+        video = Video.objects.get(id=int(video_id))
+        # 学习过该课程的所有学生
+        user_courses = UserCourse.objects.filter(course=course)
+        user_ids = [user_course.user.id for user_course in user_courses]
+        all_courses = UserCourse.objects.filter(user_id__in=user_ids).order_by("-course__click_nums")[:5]
+        related_courses = [user_course.course for user_course in all_courses if user_course.course.id != course.id]
+        course_resources = CourseResource.objects.filter(course=course)
+        teacher = Teacher.objects.get(id=22)
+
+        # 获取视频资源
+        agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+        header = {
+            "Host": "www.hzzlgy.cn",
+            "Referer": video.video_name,
+            "User-Agent": agent,
+            "Cookie": "sessionid=xbt2fra3u43y42dnxwj8tlc185hhbpi5; csrftoken=aOEJdHNmq7l4AMcr0lzPS1QqYSQv7ridgDfDENyCgd63iu26PHJ3plRkp0Q8bcwb"
+
+        }
+        response = requests.get(video.url, headers=header)
+
+        r = response.text
+
+        d = re.findall("https://f.video.weibocdn.com/(.+?)KID", r)
+
+        e = d[0]
+
+        c = e.replace("&amp;", "&")
+        url = "https://f.video.weibocdn.com/" + c + "KID=unistore,video"
+
+        return render(request, "course-free-play.html", {
+            "course": course,
+            "course_resources": course_resources,
+            "related_courses": related_courses,
+            "video": video,
+            "url": url,
+            "teacher":teacher
+
+        })
+
+
 class VideoView(LoginRequiredMixin, View):
     login_url = "/login/"
 
@@ -49,30 +97,50 @@ class VideoView(LoginRequiredMixin, View):
         cookies = Teacher.objects.get(id=int(7))
 
         # 获取视频资源
+        # agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+        # header = {
+        #     "Host": "weibo.com",
+        #     # "Referer": "https://weibo.com/tv/v/Ig92m5Vqy?fid=1034:4438479548141050",
+        #     "Referer": video.url,
+        #     "User-Agent": agent,
+        #     "Cookie": cookies.points
+        # }
+        # video_url = video.url
+        #
+        # response = requests.get(video_url, headers=header)
+        # r = response.text
+        #
+        # video_name = video.video_name
+        # s = video_name + "(.+?)KID"
+        # d = re.findall(s, r)
+        # c = d[0]
+        # ssig = re.findall(r"ssig%3D(.+?)%26", c)[0]
+        # expires = re.findall(r"Expires%3D(.+?)%26", c)[0]
+        # new = ssig.replace("%25", "%")
+        #
+        # # url = "https://f.video.weibocdn.com/001kCDEJlx07yzHzQKHm01041201iZAQ0E010.mp4?label=mp4_720p&template=960x720.25.0&trans_finger=721584770189073627c6ee9d880087b3&Expires=" + expires + "&ssig=" + new + "&KID=unistore,video"
+        # url = "https://f.video.weibocdn.com/" + video_name + "?label=mp4_720p&template=960x720.25.0&trans_finger=721584770189073627c6ee9d880087b3&Expires=" + expires + "&ssig=" + new + "&KID=unistore,video"
+        # # url = "https://f.video.weibocdn.com/002rJVj8gx07B6rI753O01041204EKCy0E020.mp4?label=mp4_720p&template=960x720.25.0&trans_finger=721584770189073627c6ee9d880087b3&Expires=1584091647&ssig=I%2BUuMLJP8%2B&KID=unistore,video"
+
+        # 获取视频资源
         agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
         header = {
-            "Host": "weibo.com",
-            # "Referer": "https://weibo.com/tv/v/Ig92m5Vqy?fid=1034:4438479548141050",
-            "Referer": video.url,
+            "Host": "www.hzzlgy.cn",
+            "Referer": video.video_name,
             "User-Agent": agent,
-            # "Cookie": "SINAGLOBAL=9674389647084.594.1579611267612; SCF=AjGepE5Zsp90usSe0y7VWIzT1ms08Z4xPkisgPWubY6yz5xPhePegZiBlLswHW0kGSbch2cFGVOdhQl0fIOHero.; SUHB=0OMkiw7z2HH7Ki; ALF=1611147342; YF-V5-G0=4e19e5a0c5563f06026c6591dbc8029f; SUB=_2AkMpZGVSf8NxqwJRmfwdz2Lgbo10yA3EieKfOJSJJRMxHRl-yT92qhEetRB6AuRLvUXY1ClSGEp5Tte-m9_VOzlbwJya; SUBP=0033WrSXqPxfM72-Ws9jqgMF55529P9D9WFYOsGaOd4DmT.RdqwG2bDR; login_sid_t=98a544eb9a4c8f6508b3484d7de56e7a; cross_origin_proto=SSL; Ugrow-G0=9ec894e3c5cc0435786b4ee8ec8a55cc; WBStorage=42212210b087ca50|undefined; wb_view_log=2560*14401; _s_tentry=passport.weibo.com; Apache=8735107876994.117.1580788331237; ULV=1580788331249:2:1:1:8735107876994.117.1580788331237:1579611267626"
-            "Cookie": cookies.points
+            "Cookie": "sessionid=xbt2fra3u43y42dnxwj8tlc185hhbpi5; csrftoken=aOEJdHNmq7l4AMcr0lzPS1QqYSQv7ridgDfDENyCgd63iu26PHJ3plRkp0Q8bcwb"
+
         }
-        video_url = video.url
-        # response = requests.get("https://weibo.com/tv/v/Ig92m5Vqy?fid=1034:4438479548141050", headers=header)
-        response = requests.get(video_url, headers=header)
+        response = requests.get(video.url, headers=header)
+
         r = response.text
 
-        # d = re.findall(r"001kCDEJlx07yzHzQKHm01041201iZAQ0E010.mp4(.+?)KID", r)
-        video_name = video.video_name
-        s = video_name + "(.+?)KID"
-        d = re.findall(s, r)
-        c = d[0]
-        ssig = re.findall(r"ssig%3D(.+?)%26", c)[0]
-        expires = re.findall(r"Expires%3D(.+?)%26", c)[0]
-        new = ssig.replace("%25", "%")
-        # url = "https://f.video.weibocdn.com/001kCDEJlx07yzHzQKHm01041201iZAQ0E010.mp4?label=mp4_720p&template=960x720.25.0&trans_finger=721584770189073627c6ee9d880087b3&Expires=" + expires + "&ssig=" + new + "&KID=unistore,video"
-        url = "https://f.video.weibocdn.com/" + video_name + "?label=mp4_720p&template=960x720.25.0&trans_finger=721584770189073627c6ee9d880087b3&Expires=" + expires + "&ssig=" + new + "&KID=unistore,video"
+        d = re.findall("https://f.video.weibocdn.com/(.+?)KID", r)
+
+        e = d[0]
+
+        c = e.replace("&amp;", "&")
+        url = "https://f.video.weibocdn.com/" + c + "KID=unistore,video"
 
         return render(request, "course-play.html", {
             "course": course,
@@ -135,7 +203,7 @@ class CourseCommentsView(LoginRequiredMixin, View):
                 "related_courses": related_courses,
                 "user_is_vip": user_is_vip,
                 "comments": comments,
-                "detailcomment":detailcomment,
+                "detailcomment": detailcomment,
                 "user_is_nianVIP": user_is_nianVIP
 
             })
@@ -178,7 +246,43 @@ class CourseCommentsView(LoginRequiredMixin, View):
             # })
 
 
-# Create your views here.
+class FreeLessonView(View):
+    def get(self, request, course_id, *args, **kwargs):
+        """
+        获取课程章节详情
+        """
+        course = Course.objects.get(id=int(course_id))
+        course.click_nums += 1
+        course.save()
+        user_courses = UserCourse.objects.filter(course=course)
+        user_ids = [user_course.user.id for user_course in user_courses]
+        all_courses = UserCourse.objects.filter(user_id__in=user_ids).order_by("-course__click_nums")[:5]
+        related_courses = [user_course.course for user_course in all_courses if
+                           user_course.course.id != course.id]  # Create your views here.
+        comments = CourseComments.objects.filter(course=course)
+        comments_count = comments.count()
+        user_is_vip = "true"
+        user_is_nianVIP = "true"
+        # 课程资源下载
+
+
+        teacher = Teacher.objects.get(id=22)
+
+        course_resources = CourseResource.objects.filter(course=course)
+        return render(request, "course-free-video.html", {
+            "course": course,
+            "course_resources": course_resources,
+            "related_courses": related_courses,
+            "user_is_vip": user_is_vip,
+            "comments_count": comments_count,
+            "user_is_nianVIP": user_is_nianVIP,
+            "comments": comments,
+            "teacher":teacher
+
+
+        })
+
+
 class CourseLessonView(LoginRequiredMixin, View):
     login_url = "/login/"
 
@@ -324,14 +428,13 @@ class CourseDetailCommentsView(View):
         for course_tag in course_tags:
             related_courses.add(course_tag.course)
 
-
         return render(request, "course-detail-comment.html", {
             "course": course,
             "has_fav_course": has_fav_course,
             "has_fav_org": has_fav_org,
             "related_courses": related_courses,
             "comments": comments,
-            "detailcomment":detailcomment
+            "detailcomment": detailcomment
         })
 
 

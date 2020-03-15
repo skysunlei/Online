@@ -1,3 +1,4 @@
+import re
 from pure_pagination import Paginator, PageNotAnInteger
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -13,6 +14,7 @@ from apps.organizations.models import CourseOrg
 from apps.users.forms import LoginForm, ChangePwdForm, DynamicLoginForm
 
 from apps.users.models import UserProfile
+import requests
 
 
 # 配置消息未读全局变量
@@ -31,6 +33,7 @@ class IndexTestView(View):
 # 网站公告
 class NoticeView(View):
     def get(self, request, *args, **kwargs):
+
         return render(request, "notice.html")
 
 
@@ -140,7 +143,6 @@ class ChangePwdView(LoginRequiredMixin, View):
 class UserInfoView(LoginRequiredMixin, View):
     login_url = "/login/"
 
-
     def get(self, request, *args, **kwargs):
         current_page = "info"
         # current_page = "mycourse"
@@ -190,7 +192,7 @@ class RegisterView(View):
         login_form = DynamicLoginForm()
         all_courses = Course.objects.order_by("-add_time")[:3]
         return render(request, "register.html", {
-            "all_courses":all_courses,
+            "all_courses": all_courses,
             "login_form": login_form,
 
         })

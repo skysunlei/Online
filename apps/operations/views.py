@@ -1,3 +1,5 @@
+import re
+import requests
 from django.shortcuts import render
 
 # Create your views here.
@@ -44,11 +46,10 @@ class IndexView(View):
         yingyin = CourseOrg.objects.get(id=21)
         other_design = CourseOrg.objects.get(id=20)
         suanfa = CourseOrg.objects.get(id=22)
+
         return render(request, "index.html", {
-            # "banners": banners,
-            # "courses": courses,
-            # "banner_courses": banner_courses,
-            # "course_orgs": course_orgs,
+
+
 
             "android": android,
             "web": web,
@@ -70,7 +71,7 @@ class IndexView(View):
             "ui": ui,
             "yingyin": yingyin,
             "other_design": other_design,
-            "suanfa": suanfa
+            "suanfa": suanfa,
 
         })
 

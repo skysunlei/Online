@@ -17,6 +17,7 @@ from email.mime.text import MIMEText
 from email.header import Header
 
 import time
+import requests
 
 
 # 用于构建邮件头
@@ -65,6 +66,7 @@ class SubmitVIP(LoginRequiredMixin, View):
             request.user.save()
 
             teacher = Teacher.objects.get(id=int(4))
+
             msg = "信息已经提交成功！订单正在审核中，付款后3分钟左右自动开通哟！  有疑问请联系官方邮箱" + teacher.work_company
             return render(request, "submit-vip.html", {
                 "msg": msg

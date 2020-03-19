@@ -27,7 +27,7 @@ class FreeVideoView(View):
         all_courses = UserCourse.objects.filter(user_id__in=user_ids).order_by("-course__click_nums")[:5]
         related_courses = [user_course.course for user_course in all_courses if user_course.course.id != course.id]
         course_resources = CourseResource.objects.filter(course=course)
-        teacher = Teacher.objects.get(id=22)
+        teacher = Teacher.objects.get(id=(course.learn_times))
 
         # 获取视频资源
         agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
@@ -266,7 +266,7 @@ class FreeLessonView(View):
         # 课程资源下载
 
 
-        teacher = Teacher.objects.get(id=22)
+        teacher = Teacher.objects.get(id=(course.learn_times))
 
         course_resources = CourseResource.objects.filter(course=course)
         return render(request, "course-free-video.html", {

@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'online',
         'USER': 'root',
-        'PASSWORD': '4868569',
+        'PASSWORD': 'h2mmichaelwly',
         'HOST': 'localhost',
         'PORT': '3306',
 
@@ -138,7 +138,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 本地开发的时候要把这个注释掉
-# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # 关闭uwsgi 用pkill -f uwsgi 执行后它会自动重启
 # 分页相关设置
 PAGINATION_SETTINGS = {

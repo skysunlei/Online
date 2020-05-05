@@ -9,6 +9,20 @@ body {
 
 }
 
+.shilei_li {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #6a7576;
+}
+
+.shilei_li a {
+    color: #6a7576;
+}
+
+.shilei_li a:hover {
+    color: #00a0e9;
+}
+
 .fl_g h2 a, dt a {
     font-size: 8px;
     font-weight: bold;
@@ -25,23 +39,25 @@ em {
     font-style: normal;
 }
 
-.index_dd{
+.index_dd {
     margin: 0px;
 }
-.index_h1{
+
+.index_h1 {
     font-size: 25px;
     color: #FFFFFF;
     margin: 5px;
 
 }
 
-.index_h2{
+.index_h2 {
     font-size: 15px;
     color: #FFFFFF;
     margin: 10px 0px 0px 0px;
 
 }
-.index_dl{
+
+.index_dl {
     padding-top: 20px;
 }
 
@@ -89,6 +105,50 @@ dt {
     background-color: #FFFFFF;
 }
 
+.merquee {
+    height: 25px;
+    line-height: 25px;
+    box-sizing: border-box;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.merquee-txt {
+    color: red;
+    font-size: 18px;
+    display: inline-block;
+    padding-left: 100%; /* 从右至左开始滚动 */
+    animation: marqueeTransform 32s linear infinite;
+}
+
+@keyframes marqueeTransform {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-100%, 0);
+    }
+}
+
+
+
+.shilei {
+    width: 1000px;
+    height: 305px;
+    margin: 10px auto;
+    background-color: #EAEAEA;
+}
+
+.slide {
+    position: relative;
+    width: 403px;
+    height: 305px;
+    background: #fff;
+    overflow: hidden;
+    display: inline-block
+}
+
 .index_title {
     width: 1000px;
     height: 100px;
@@ -101,15 +161,13 @@ dt {
     height: 100px;
 
 }
-.index_title_image{
+
+.index_title_image {
     width: 70px;
     height: 70px;
     float: left;
     margin: 18px 30px 0 20px;
 }
-
-
-
 
 .index_title2 {
     background-color: #FF69B4;
@@ -137,8 +195,6 @@ dt {
 
 }
 
-
-
 .index_table {
     width: 100%;
     height: auto;
@@ -152,7 +208,10 @@ table {
     width: 100%;
     border: 0px;
 }
-table td{border:none;}
+
+table td {
+    border: none;
+}
 
 .td_icon {
     width: 100%;
@@ -186,7 +245,7 @@ em {
     margin-bottom: 10px;
 }
 
-.footimg{
+.footimg {
     margin-top: 30px;
 }
 

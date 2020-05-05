@@ -35,7 +35,7 @@ class FreeVideoView(View):
             "Host": "www.hzzlgy.cn",
             "Referer": video.video_name,
             "User-Agent": agent,
-            "Cookie": "sessionid=xbt2fra3u43y42dnxwj8tlc185hhbpi5; csrftoken=aOEJdHNmq7l4AMcr0lzPS1QqYSQv7ridgDfDENyCgd63iu26PHJ3plRkp0Q8bcwb"
+            "Cookie": "csrftoken=kdzOQtfsZtiMG1NX2BBE4zx30KyXz0YuifeQ7KuBdxgNKi4Q4Kf1V8iLC1BrXSaJ; sessionid=yhq9ieyk6ree78ozzuzmunu7ybwwnquj"
 
         }
         response = requests.get(video.url, headers=header)

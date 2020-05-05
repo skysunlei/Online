@@ -46,11 +46,32 @@ class IndexView(View):
         yingyin = CourseOrg.objects.get(id=21)
         other_design = CourseOrg.objects.get(id=20)
         suanfa = CourseOrg.objects.get(id=22)
+        all_courses_all = Course.objects.order_by("-add_time")[:9]
+        all_courses = Course.objects.order_by("-add_time")[:5]
+        all_course1 = all_courses_all[0]
+        all_course2 = all_courses_all[1]
+        all_course3 = all_courses_all[2]
+        all_course4 = all_courses_all[3]
+        all_course5 = all_courses_all[4]
+        all_course6 = all_courses_all[5]
+        all_course7 = all_courses_all[6]
+        all_course8 = all_courses_all[7]
+        all_course9 = all_courses_all[8]
+        from django.db.models import Q
+        all_vips = UserProfile.objects.filter(Q(is_nian_VIP=True) | Q(is_VIP=True))[:10]
 
         return render(request, "index.html", {
-
-
-
+            "all_vips": all_vips,
+            "all_course9": all_course9,
+            "all_courses": all_courses,
+            "all_course1": all_course1,
+            "all_course2": all_course2,
+            "all_course3": all_course3,
+            "all_course4": all_course4,
+            "all_course5": all_course5,
+            "all_course6": all_course6,
+            "all_course7": all_course7,
+            "all_course8": all_course8,
             "android": android,
             "web": web,
             "php": php,

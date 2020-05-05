@@ -7,6 +7,85 @@
 {% endblock %}
 {% block content %}
 
+
+    <div class="shilei">
+        <div class="fl slide">
+            <div class="imgslide">
+                <ul class="imgs">
+
+                    {% for all_course in all_courses %}
+                        <li><a href=""><img width="403" height="305" src="{{ all_course.image.url }}"/></a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+        <div style="display: inline-block;width: 58%;height: 10%;padding-left: 10px;padding-right: 3px;background-color: #717171;">
+            <span style="font-size: 20px; color: white;line-height: 31px">最新资源</span>
+
+        </div>
+        <div style="display: inline-block; width: 58%;height:90%;padding-left: 10px;padding-right: 3px;background-color: #FFFFFF">
+
+            <ul>
+                <li class="shilei_li"><a href="{% url 'course:detail' all_course1.id %}">{{ all_course1.name }} </a>
+                    <span
+                            style="float: right;font-size: 15px">{{ all_course1.course_org.name }}</span></li>
+                <li class="shilei_li"><a href="{% url 'course:detail' all_course2.id %}">{{ all_course2.name }} </a>
+                    <span
+                            style="float: right;font-size: 15px">{{ all_course2.course_org.name }}</span></li>
+                <li class="shilei_li"><a href="{% url 'course:detail' all_course3.id %}">{{ all_course3.name }} </a>
+                    <span
+                            style="float: right;font-size: 15px">{{ all_course3.course_org.name }}</span></li>
+                <li class="shilei_li"><a href="{% url 'course:detail' all_course4.id %}">{{ all_course4.name }}</a>
+                    <span
+                            style="float: right;font-size: 15px">{{ all_course4.course_org.name }}</span></li>
+                <li class="shilei_li"><a href="{% url 'course:detail' all_course5.id %}">{{ all_course5.name }}</a>
+                    <span
+                            style="float: right;font-size: 15px">{{ all_course5.course_org.name }}</span></li>
+                <li class="shilei_li"><a href="{% url 'course:detail' all_course6.id %}">{{ all_course6.name }}</a>
+                    <span
+                            style="float: right;font-size: 15px">{{ all_course6.course_org.name }}</span></li>
+                <li class="shilei_li"><a href="{% url 'course:detail' all_course7.id %}">{{ all_course7.name }}</a>
+                    <span
+                            style="float: right;font-size: 15px">{{ all_course7.course_org.name }}</span></li>
+                <li class="shilei_li"><a href="{% url 'course:detail' all_course8.id %}">{{ all_course8.name }}</a>
+                    <span
+                            style="float: right;font-size: 15px">{{ all_course8.course_org.name }}</span></li>
+                <li class="shilei_li"><a href="{% url 'course:detail' all_course9.id %}">{{ all_course9.name }}</a>
+                    <span
+                            style="float: right;font-size: 15px">{{ all_course9.course_org.name }}</span></li>
+
+
+            </ul>
+        </div>
+
+
+    </div>
+    <div class="yuyan_title">
+        <div style="display:inline-block;line-height: 31px;font-size: 20px;color: #666666">
+            公告:
+        </div>
+
+        <div class="merquee" style="display:inline-block;width: 30%;line-height: 31px">
+
+            <span class="merquee-txt">
+                {% for all_vip in all_vips %}
+
+                    感谢 {{ all_vip.username }} 赞助本站并获得
+                    {% if all_vip.is_VIP is  True %}
+                        永久
+                    {% elif all_vip.is_nian_VIP is True %}
+                        年费
+
+                    {% endif %}
+                    vip！
+                    <img src="{% static  'images/new.gif' %}" style="width: 28px;height: 11px">&nbsp;&nbsp;
+
+                {% endfor %}
+
+            </span>
+        </div>
+    </div>
     <div class="index_title">
         <table>
             <tbody>
@@ -20,8 +99,6 @@
 
                             <dd class="index_dd"><h1 class="index_h1">每日更新</h1></dd>
                             <dd class="index_dd"><h1 class="index_h1">最新教程</h1></dd>
-
-
                         </dl>
                     </div>
 
@@ -83,8 +160,8 @@
     <div class="yuyan_title">
         <h4>编程开发</h4>
 
-
     </div>
+
 
     <div class="index-content">
 
@@ -352,7 +429,8 @@
                     </div>
                     <dl style="margin-left: 56px">
                         <dt>
-                            <a target="_blank" href="{% url 'org:home' suanfa.id %}" class="title_name">{{ suanfa.name }}</a>
+                            <a target="_blank" href="{% url 'org:home' suanfa.id %}"
+                               class="title_name">{{ suanfa.name }}</a>
                         </dt>
                         <em>课程数:&nbsp;&nbsp;{{ suanfa.course_nums }}</em>
 
@@ -662,4 +740,7 @@
 
     </div>
 
+{% endblock %}
+{% block custom_js %}
+    <script src="{% static 'js/login.js' %}" type="text/javascript"></script>
 {% endblock %}
